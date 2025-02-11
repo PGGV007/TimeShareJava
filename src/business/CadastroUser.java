@@ -3,13 +3,14 @@ package business;
 import dados.IRepositorio;
 import exceptions.ObjectOutsideArrayException;
 import classesBasicas.User;
-import exceptions.UserAlreadyExists;
+import exceptions.UserAlreadyExistsException;
+import exceptions.UnregisteredUserException;
 
 public class CadastroUser {
 	
 	private IRepositorio repositorio; 
 	
-	public void cadastrar(User a) throws UserAlreadyExists {
+	public void cadastrar(User a) throws UserAlreadyExistsException {
 		if(a == null) {
 			throw new IllegalArgumentException("Parâmetro inválido"); 
 		}
@@ -17,7 +18,7 @@ public class CadastroUser {
 			if(this.existe(a) == false) {
 				this.repositorio.adicionar(a);
 			}else {
-				throw new UserAlreadyExists();  
+				throw new UserAlreadyExistsException();  
 			}
 		}
 	}
@@ -36,9 +37,11 @@ public class CadastroUser {
 		
 	}
 	
-	public void atualizar(User a) throws ObjectOutsideArrayException {
-		if(a != null) {
-			repositorio.atualizar(a);
+	public void atualizar(String idUser) throws ObjectOutsideArrayException, UnregisteredUserException {
+		if(idUser != null) {
+			repositorio.atualizar(repositorio.procurar(idUser));
+		}else {
+			throw new UnregisteredUserException(); 
 		}
 	}
 	

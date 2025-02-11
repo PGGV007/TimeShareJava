@@ -3,14 +3,14 @@ package classesBasicas;
 public class Registro {
 	
 	
-      private byte numShares;
+      private byte fraction;
       private String idRegistro;
       private Propriedade propriedade; 
       private User user; 
 
 
-        Registro(byte numShares, String idRegistro, Propriedade propriedade, User user){
-            this.numShares = numShares;
+        Registro(byte fraction, String idRegistro, Propriedade propriedade, User user){
+            this.fraction = fraction;
             this.idRegistro = idRegistro;
             this.propriedade = propriedade; 
             this.user = user; 
@@ -18,12 +18,12 @@ public class Registro {
         
         
 
-    public byte getNumShares() {
-        return numShares;
+    public byte getFraction() {
+        return fraction;
     }
     
-    public void setNumShares(byte numShares) {
-        this.numShares = numShares;
+    public void setFraction(byte fraction) {
+        this.fraction = fraction;
     }
 
     public String getIdRegistro() {

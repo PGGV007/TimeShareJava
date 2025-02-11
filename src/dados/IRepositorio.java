@@ -1,6 +1,6 @@
 package dados;
 import exceptions.ObjectOutsideArrayException; 
-import exceptions.UserAlreadyExists;
+import exceptions.UserAlreadyExistsException;
 
 public interface IRepositorio {
 	
