@@ -6,18 +6,28 @@ public class Registro {
       private byte fraction;
       private String idRegistro;
       private Propriedade propriedade; 
-      private User user; 
+      private User owner; 
+      private boolean reservado; 
 
 
-        Registro(byte fraction, String idRegistro, Propriedade propriedade, User user){
+        Registro(byte fraction, String idRegistro, Propriedade propriedade, User owner){
             this.fraction = fraction;
             this.idRegistro = idRegistro;
             this.propriedade = propriedade; 
-            this.user = user; 
+            this.owner = owner; 
+            this.reservado = false; 
         }
         
         
 
+    public boolean getReservado() {
+    	return this.reservado;
+    }
+    
+    public void setReservado(boolean reservado) {
+    	this.reservado = reservado; 
+    }
+    
     public byte getFraction() {
         return fraction;
     }
@@ -42,12 +52,12 @@ public class Registro {
     	this.propriedade = propriedade; 
     }
     
-    public User getUser() {
-    	return this.user; 
+    public User getOwner() {
+    	return this.owner; 
     }
     
-    public void setUser(User user) {
-    	this.user = user; 
+    public void setUser(User owner) {
+    	this.owner = owner; 
     }
     
   

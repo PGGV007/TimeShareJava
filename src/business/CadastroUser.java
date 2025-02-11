@@ -10,6 +10,10 @@ public class CadastroUser {
 	
 	private IRepositorio repositorio; 
 	
+	public CadastroUser(IRepositorio repositorio) {
+		this.repositorio = repositorio; 
+	}
+	
 	public void cadastrar(User a) throws UserAlreadyExistsException {
 		if(a == null) {
 			throw new IllegalArgumentException("Parâmetro inválido"); 
