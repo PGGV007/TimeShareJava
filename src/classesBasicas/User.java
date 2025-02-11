@@ -1,16 +1,17 @@
-package Project;
+package classesBasicas;
 
 import java.util.Objects;
 
 public class User extends Pessoa{
     private String idUser;
-    Registro ownedRegistros;
+    
+    private Registro ownedRegistros;
 
-    public User(String cpf, String nome, String idUser, Registro ownedRegistros) {
+     User(String cpf, String nome, String idUser, Registro ownedRegistros) {
         super(cpf, nome);
         this.idUser = idUser;
         this.ownedRegistros = ownedRegistros;
-    }
+     }
 
     public String getIdUser() {
         return idUser;
@@ -36,8 +37,4 @@ public class User extends Pessoa{
         return Objects.equals(getIdUser(), user.getIdUser()) && Objects.equals(getOwnedRegistros(), user.getOwnedRegistros());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdUser(), getOwnedRegistros());
-    }
 }
