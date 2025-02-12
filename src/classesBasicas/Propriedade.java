@@ -30,7 +30,7 @@ public class Propriedade {
 		 this.semanas = new HashMap<>(); // map para vincular as semanas a datas 
 		 inicializarSemanas(); 
 		 this.idPropriedade = GeradorId.geradorHexId(16); 
-		 this.registros = new Registro[52]; 
+		 this.registros = new Registro[52]; //não testar isso agora
 	}
 	
 	private void inicializarSemanas() {
