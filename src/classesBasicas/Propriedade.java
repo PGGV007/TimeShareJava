@@ -12,10 +12,12 @@ public class Propriedade {
 	private int capacidade; 
 	private double price; 
 	private final String idPropriedade; 
-	private Registro[] registros; //
-	private LocalDate dataInicial; 
-	private int anoBase;
-	private Map<Integer, LocalDate> semanas; 
+	private  Registro[] registros;   //registros diretamente relacionados á prorpriedade 
+	private LocalDate dataInicial; //data exata em que a propriedade fora vinculada 
+	private int anoBase; //ano em que a propriedae fora vinculada 
+	private Map<Integer, LocalDate> semanas; // map para vincular as semanas a datas 
+	
+	
 	
 	
 	
@@ -27,10 +29,19 @@ public class Propriedade {
 		 this.price = price; 
 		 this.dataInicial = dataInicial;
 		 this.anoBase = dataInicial.getYear();
-		 this.semanas = new HashMap<>(); // map para vincular as semanas a datas 
+		 this.semanas = new HashMap<>(); 
 		 inicializarSemanas(); 
-		 this.idPropriedade = GeradorId.geradorHexId(16); 
-		 this.registros = new Registro[52]; //não testar isso agora
+		 this.idPropriedade = GeradorId.geradorHexId(16);
+		 this.registros = new Registro[52]; 
+			 
+	}
+	
+	public Registro[] getRegistros() {
+		return this.registros; 
+	}
+	
+	public void addRegistros(Registro registro,int i ) {
+		this.registros[i] = registro; 
 	}
 	
 	private void inicializarSemanas() {
@@ -51,6 +62,8 @@ public class Propriedade {
 		return dataSemana; 
 		
 	}
+	
+	
 	
 	
 	public String getIdPropriedade() {

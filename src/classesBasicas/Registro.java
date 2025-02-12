@@ -8,8 +8,8 @@ public class Registro {
       private Propriedade propriedade; //propriedade vinculada 
       private User owner; //proprietário do registro 
       private boolean reservado; //indicativo se está reservado ou não
-      private boolean available; //proprietário do registro deve ser capaz de pôr à disposição
-      private double price; // preço por share 
+      private boolean forSale; //proprietário do registro deve ser capaz de pôr à disposição
+      private double priceReserva; // preço por share 
 
 
         Registro(byte fraction, Propriedade propriedade, User owner){
@@ -18,8 +18,7 @@ public class Registro {
             this.propriedade = propriedade; 
             this.owner = owner; 
             this.reservado = false; 
-            this.available = false; 
-            this.price = propriedade.getPrice();
+            this.forSale = false; 
             }
         
         Registro(byte fraction, Propriedade propriedade){
@@ -28,19 +27,19 @@ public class Registro {
             this.propriedade = propriedade; 
             this.owner = null; 
             this.reservado = false; 
-            this.available = false; 
-            this.price = propriedade.getPrice();
+            this.forSale = false; 
+            this.priceReserva = propriedade.getPrice();
             }
         
         
         
 
-    public boolean getAvailable() {
-    	return this.available; 
+    public boolean getForSale() {
+    	return this.forSale; 
     }
     
-    public void setAvailable(boolean a) {
-    	this.available = a; 
+    public void setForSale(boolean a) {
+    	this.forSale = a; 
     }
     
     public boolean getReservado() {
@@ -77,6 +76,14 @@ public class Registro {
     
     public void setUser(User owner) {
     	this.owner = owner; 
+    }
+    
+    public void setPriceReserva(double price) {
+    	this.priceReserva = price; 
+    }
+    
+    public double getPriceReserva() {
+    	return this.priceReserva; 
     }
     
   
