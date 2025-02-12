@@ -31,6 +31,16 @@ public class CadastroPropriedade {
 			if(repositorioGerente.existe(idGerente) == true ) {
 				if(this.existe(propriedade) != true) {
 					repositorioPropriedade.adicionar(propriedade);
+					
+					for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 
+						 registros[i].setPropriedade(propriedade);
+						 registros[i].setUser(null);
+						 for(byte j = 0; j<52;j++) {
+							 registros[j].setFraction((byte) (j+1));
+						 }				 
+						 propriedade.addRegistros(registros[i], i); //alocação dos registros dentro da propriedade relacionada 
+						 this.repositorioRegistro.adicionar(registros[i]); //alocação dos registros dentro do repositório geral 
+					 }
 				}else {
 					throw new PropriedadeAlreadyExistsException(); 
 				}
@@ -41,17 +51,7 @@ public class CadastroPropriedade {
 			throw new IllegalArgumentException("Propriedade inválida"); 
 		}
 		
-		 for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 
-			 registros[i].setPropriedade(propriedade);
-			 registros[i].setUser(null);
-			 for(byte j = 0; j<52;j++) {
-				 registros[j].setFraction((byte) (j+1));
-			 }
-			 
-			 propriedade.addRegistros(registros[i], i); //alocação dos registros dentro da propriedade relacionada 
-			 this.repositorioRegistro.adicionar(propriedade); //alocação dos registros dentro do repositório geral 
-			 
-		 }
+	
 		 
 		
 	}
