@@ -3,13 +3,13 @@ package classesBasicas;
 import java.util.Objects;
 
 public class User extends Pessoa{
-    private String idUser;
+    private final String idUser;
     
     private Registro ownedRegistros;
 
-     User(String cpf, String nome, String idUser, Registro ownedRegistros) {
+     User(String cpf, String nome, Registro ownedRegistros) {
         super(cpf, nome);
-        this.idUser = idUser;
+        this.idUser = GeradorId.geradorHexId(16);
         this.ownedRegistros = ownedRegistros;
      }
 
@@ -17,9 +17,6 @@ public class User extends Pessoa{
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
 
     public Registro getOwnedRegistros() {
         return ownedRegistros;

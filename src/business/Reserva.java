@@ -19,9 +19,6 @@ public class Reserva {
 			
 		}
 	}
-	/*
-	 * Classe incompleta (não testar) 
-	 * */
 	
 	
 	

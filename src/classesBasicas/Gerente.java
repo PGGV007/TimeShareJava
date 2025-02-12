@@ -2,21 +2,16 @@ package classesBasicas;
 
 public class Gerente extends Pessoa {
 	
-	private String idGerente; 
+	private final String idGerente; 
 	
 	Gerente(String cpf, String nome, String idGerente){
 		super(cpf,nome); 
-		this.idGerente = idGerente; 
+		this.idGerente = GeradorId.geradorHexId(16); ; 
 	}
 
 	public String getIdGerente() {
 		return idGerente;
 	}
 
-	public void setIdGerente(String idGerente) {
-		this.idGerente = idGerente;
-	}
-	
-	
 	
 }

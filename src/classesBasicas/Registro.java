@@ -3,23 +3,46 @@ package classesBasicas;
 public class Registro {
 	
 	
-      private byte fraction;
-      private String idRegistro;
-      private Propriedade propriedade; 
-      private User owner; 
-      private boolean reservado; 
+      private byte fraction; //semana correspondente 
+      private final String idRegistro; //id pelo qual o registro deve ser identificado (uma vez estabelecido, assim ficará)
+      private Propriedade propriedade; //propriedade vinculada 
+      private User owner; //proprietário do registro 
+      private boolean reservado; //indicativo se está reservado ou não
+      private boolean available; //proprietário do registro deve ser capaz de pôr à disposição
+      private double price; // preço por share 
 
 
-        Registro(byte fraction, String idRegistro, Propriedade propriedade, User owner){
+        Registro(byte fraction, Propriedade propriedade, User owner){
             this.fraction = fraction;
-            this.idRegistro = idRegistro;
+            this.idRegistro = GeradorId.geradorHexId(16); ;
             this.propriedade = propriedade; 
             this.owner = owner; 
             this.reservado = false; 
-        }
+            this.available = false; 
+            this.price = propriedade.getPrice();
+            }
+        
+        Registro(byte fraction, Propriedade propriedade){
+            this.fraction = fraction;
+            this.idRegistro = GeradorId.geradorHexId(16); ;
+            this.propriedade = propriedade; 
+            this.owner = null; 
+            this.reservado = false; 
+            this.available = false; 
+            this.price = propriedade.getPrice();
+            }
+        
         
         
 
+    public boolean getAvailable() {
+    	return this.available; 
+    }
+    
+    public void setAvailable(boolean a) {
+    	this.available = a; 
+    }
+    
     public boolean getReservado() {
     	return this.reservado;
     }
@@ -38,10 +61,6 @@ public class Registro {
 
     public String getIdRegistro() {
         return idRegistro;
-    }
-
-    public void setIdRegistro(String idRegistro) {
-        this.idRegistro = idRegistro;
     }
     
     public Propriedade getPropriedade() {

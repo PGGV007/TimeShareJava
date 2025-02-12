@@ -11,8 +11,8 @@ public class Propriedade {
 	private String description; 
 	private int capacidade; 
 	private double price; 
-	private String idPropriedade; 
-	private Registro registroPropriedade; 
+	private final String idPropriedade; 
+	private Registro[] registros; //
 	private LocalDate dataInicial; 
 	private int anoBase;
 	private Map<Integer, LocalDate> semanas; 
@@ -27,8 +27,10 @@ public class Propriedade {
 		 this.price = price; 
 		 this.dataInicial = dataInicial;
 		 this.anoBase = dataInicial.getYear();
-		 this.semanas = new HashMap<>();
+		 this.semanas = new HashMap<>(); // map para vincular as semanas a datas 
 		 inicializarSemanas(); 
+		 this.idPropriedade = GeradorId.geradorHexId(16); 
+		 this.registros = new Registro[52]; 
 	}
 	
 	private void inicializarSemanas() {
@@ -50,22 +52,11 @@ public class Propriedade {
 		
 	}
 	
-	public Registro getRegistro() {
-		return this.registroPropriedade; 
-	}
-	
-	public void setRegistro(Registro registro) {
-		this.registroPropriedade = registro; 
-	}
 	
 	public String getIdPropriedade() {
 		return this.idPropriedade; 
 	}
 	
-	public void setIdPropriedade(String id) {
-		this.idPropriedade = id; 
-	}
-
 	public String getNome() {
 		return nome;
 	}
