@@ -10,16 +10,18 @@ import exceptions.PropriedadeAlreadyExistsException;
 public class CadastroPropriedade {
 	
 
-	private IRepositorio repositorioPropriedade;
+	private IRepositorio repositorioPropriedade ;
 	private IRepositorio repositorioGerente; 
 	
-	
-	public CadastroPropriedade(IRepositorio repositorioPropriedade, IRepositorio repositorioGerente) {
+	public CadastroPropriedade(IRepositorio repositorioPropriedade,IRepositorio repositorioGerente ) {
 		this.repositorioGerente = repositorioGerente; 
 		this.repositorioPropriedade = repositorioPropriedade; 
 	}
 	
-	public void cadastrar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, PropriedadeAlreadyExistsException{
+	
+
+	
+	public  void cadastrar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, PropriedadeAlreadyExistsException{
 		if(propriedade != null) {
 			if(repositorioGerente.existe(idGerente) == true ) {
 				if(this.existe(propriedade) != true) {
