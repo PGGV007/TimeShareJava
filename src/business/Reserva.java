@@ -2,6 +2,10 @@ package business;
 
 import classesBasicas.User;
 import classesBasicas.Registro;
+import exceptions.WeekAlreadyReservedException;
+import exceptions.PaymentNotCompletedException;
+import exceptions.WeekNotAvailableException;
+
 
 
 public class Reserva {
@@ -9,16 +13,26 @@ public class Reserva {
 	private User renter; 
 	
 	
-	public void reservar(Registro registro, User userDemanda) {
+	public void reservar(Registro registro, User userDemanda) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
 		
 		if(registro.getOwner().equals(userDemanda)) {
-			registro.setReservado(false);
-			this.setReter(userDemanda);
-		}else {
-			registro.getPriceReserva();
-			if(this.pagamento()) {
+			if(registro.getReservado()) {
 				this.setReter(userDemanda);
-				registro.setReservado(false);
+				registro.setReservado(true);
+			}else {
+				throw new WeekAlreadyReservedException(); 
+			}
+		}else {
+			if(registro.getAvailabe() && registro.getReservado()) {
+				registro.getPriceReserva();
+				if(this.pagamento()) {
+					this.setReter(userDemanda);
+					registro.setReservado(true);
+				}else {
+					throw new PaymentNotCompletedException(); 
+				}
+			}else {
+				throw new WeekNotAvailableException(); 
 			}
 		}
 		

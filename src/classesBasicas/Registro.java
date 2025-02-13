@@ -8,6 +8,7 @@ public class Registro {
       private Propriedade propriedade; //propriedade vinculada 
       private User owner; //proprietário do registro 
       private boolean reservado; //indicativo se está reservado ou não
+      private boolean availabe; //prorprietário indica se está disponível ou não para ser reservado 
       private boolean forSale; //proprietário do registro deve ser capaz de pôr à disposição
       private double priceReserva; // preço da reserva  
 
@@ -85,6 +86,14 @@ public class Registro {
     public double getPriceReserva() {
     	return this.priceReserva; 
     }
+
+	public boolean getAvailabe() {
+		return availabe;
+	}
+
+	public void setAvailabe(boolean availabe) {
+		this.availabe = availabe;
+	}
     
   
     
