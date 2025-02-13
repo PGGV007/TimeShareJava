@@ -35,9 +35,8 @@ public class CadastroPropriedade {
 					for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 
 						 registros[i].setPropriedade(propriedade);
 						 registros[i].setUser(null);
-						 for(byte j = 0; j<52;j++) {
-							 registros[j].setFraction((byte) (j+1));
-						 }				 
+						 registros[i].setFraction((byte) (i+1));
+						 				 
 						 propriedade.addRegistros(registros[i], i); //alocação dos registros dentro da propriedade relacionada 
 						 this.repositorioRegistro.adicionar(registros[i]); //alocação dos registros dentro do repositório geral 
 					 }

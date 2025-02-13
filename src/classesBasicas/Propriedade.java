@@ -40,7 +40,7 @@ public class Propriedade {
 		return this.registros; 
 	}
 	
-	public void addRegistros(Registro registro,int i ) {
+	public void addRegistros(Registro registro,int i ) { //classe unicamente responsável por pôr os registros inicializados no cadastro dentro do atributo registros da classe
 		this.registros[i] = registro; 
 	}
 	
@@ -50,7 +50,7 @@ public class Propriedade {
         }
     }
 	
-	public LocalDate getSemana(int numSemana, int ano) {
+	public LocalDate getSemana(int numSemana, int ano) { //classe responsável por retornar a data de início da semana operando conforme o ano  
 		if(numSemana<1 || numSemana>52) {
 			throw new IllegalArgumentException("Número da semana deve estar entre 1 e 52."); 
 		}

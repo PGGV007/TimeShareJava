@@ -9,7 +9,7 @@ public class Registro {
       private User owner; //proprietário do registro 
       private boolean reservado; //indicativo se está reservado ou não
       private boolean forSale; //proprietário do registro deve ser capaz de pôr à disposição
-      private double priceReserva; // preço por share 
+      private double priceReserva; // preço da reserva  
 
 
         Registro(byte fraction, Propriedade propriedade, User owner){

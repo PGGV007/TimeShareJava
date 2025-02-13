@@ -2,24 +2,30 @@ package business;
 
 import classesBasicas.User;
 import classesBasicas.Registro;
+import dados.IRepositorio;
+import exceptions.ObjectOutsideArrayException;
 
 public class Transfer {
 	
-	private User userDestino; 
-	private User userOferta; 
-	private Registro registro; 
+	private IRepositorio repositorioRegistro; 
+	private IRepositorio repositorioUser;  
 	
 	
-	Transfer(User destino, User oferta, Registro registro){
-		this.registro = registro; 
-		this.userDestino = destino;
-		this.userOferta = oferta; 
+	Transfer(IRepositorio repositorioRegistro, IRepositorio repositorioUser){
+		this.repositorioRegistro = repositorioRegistro;
+		this.repositorioUser = repositorioUser; 
 	}
 	
-	public void transfer(User destino, Registro registro)
+	public void transfer(String idUser, String idRegistro) throws ObjectOutsideArrayException 
 	{
-		if(destino != null) {
-			registro.setUser(destino);
+		if(idUser != null && repositorioUser.existe(idUser)) {
+			if(repositorioRegistro.existe(idRegistro)) {
+				Registro r = (Registro)repositorioRegistro.procurar(idRegistro);
+				r.setUser((User)repositorioUser.procurar(idUser));
+				r.setForSale(false);
+			}else {
+				throw new IllegalArgumentException("Registro inválido"); 
+			}
 		}else {
 			throw new  IllegalArgumentException("Usuátrio inválido"); 
 		}
