@@ -4,7 +4,7 @@ public class Gerente extends Pessoa {
 	
 	private final String idGerente; 
 	
-	Gerente(String cpf, String nome, String idGerente){
+	public Gerente(String cpf, String nome){
 		super(cpf,nome); 
 		this.idGerente = GeradorId.geradorHexId(16); ; 
 	}

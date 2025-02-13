@@ -8,7 +8,7 @@ public class User extends Pessoa{
     private final String idUser;
     
 
-     User(String cpf, String nome) {
+    public User(String cpf, String nome) {
         super(cpf, nome);
         this.idUser = GeradorId.geradorHexId(16);
      }

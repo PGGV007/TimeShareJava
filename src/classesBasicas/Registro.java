@@ -13,7 +13,7 @@ public class Registro {
       private double priceReserva; // preço da reserva  
 
 
-        Registro(byte fraction, Propriedade propriedade, User owner){
+       public  Registro(byte fraction, Propriedade propriedade, User owner){
             this.fraction = fraction;
             this.idRegistro = GeradorId.geradorHexId(16); ;
             this.propriedade = propriedade; 
@@ -22,7 +22,7 @@ public class Registro {
             this.forSale = false; 
             }
         
-        Registro(byte fraction, Propriedade propriedade){
+       public Registro(byte fraction, Propriedade propriedade){
             this.fraction = fraction;
             this.idRegistro = GeradorId.geradorHexId(16); ;
             this.propriedade = propriedade; 
@@ -95,6 +95,11 @@ public class Registro {
 		this.availabe = availabe;
 	}
     
+	
+	@Override
+	public String toString() {
+		return  ((Byte)this.fraction).toString() +"  " +idRegistro;  
+	}
   
     
 }

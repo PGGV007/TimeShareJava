@@ -30,13 +30,11 @@ public class CadastroPropriedade {
 		if(propriedade != null) {
 			if(repositorioGerente.existe(idGerente) == true ) {
 				if(this.existe(propriedade) != true) {
-					repositorioPropriedade.adicionar(propriedade);
-					
+					repositorioPropriedade.adicionar(propriedade); 
 					for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 
-						 registros[i].setPropriedade(propriedade);
-						 registros[i].setUser(null);
-						 registros[i].setFraction((byte) (i+1));
-						 				 
+						 Registro reg = new Registro(((byte)1),propriedade);
+						 registros[i] = reg;
+						 registros[i].setFraction((byte)(i + 1));
 						 propriedade.addRegistros(registros[i], i); //alocação dos registros dentro da propriedade relacionada 
 						 this.repositorioRegistro.adicionar(registros[i]); //alocação dos registros dentro do repositório geral 
 					 }
