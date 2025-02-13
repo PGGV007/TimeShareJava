@@ -11,14 +11,14 @@ public class Transfer {
 	private IRepositorio repositorioUser;  
 	
 	
-	Transfer(IRepositorio repositorioRegistro, IRepositorio repositorioUser){
+	public Transfer(IRepositorio repositorioRegistro, IRepositorio repositorioUser){
 		this.repositorioRegistro = repositorioRegistro;
 		this.repositorioUser = repositorioUser; 
 	}
 	
 	public void transfer(String idUser, String idRegistro) throws ObjectOutsideArrayException 
 	{
-		if(idUser != null && repositorioUser.existe(idUser)) {
+		if(idUser != null && repositorioUser.existe(idUser) && !(((Registro)repositorioRegistro.procurar(idRegistro)).getOwner()).equals(((User)repositorioUser.procurar(idUser))) ) {
 			if(repositorioRegistro.existe(idRegistro)) {
 				Registro r = (Registro)repositorioRegistro.procurar(idRegistro);
 				r.setUser((User)repositorioUser.procurar(idUser));
@@ -27,7 +27,7 @@ public class Transfer {
 				throw new IllegalArgumentException("Registro inválido"); 
 			}
 		}else {
-			throw new  IllegalArgumentException("Usuátrio inválido"); 
+			throw new  IllegalArgumentException("Usuário inválido"); 
 		}
 		
 	}	

@@ -10,8 +10,10 @@ import dados.RepositorioPropriedadeSet;
 import dados.RepositorioRegistroSet;
 import dados.RepositorioGerenteSet;
 import exceptions.GerenteAlreadyExistsException;
+import exceptions.ObjectOutsideArrayException;
 import exceptions.PropriedadeAlreadyExistsException;
 import exceptions.UnregisteredGerenteException;
+import exceptions.UnregisteredPropriedadeException;
 
 import java.time.LocalDate; 
 
@@ -36,6 +38,9 @@ public class TestCadastroPropriedade {
         	cadastroGerente.cadastrar(gerente); 
             // Testar cadastro do gerente
             cadastroPropriedade.cadastrar(gerente.getIdGerente(),propriedade);
+            propriedade.setCapacidade(200);
+            cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
+           // cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());
             System.out.println("Propriedade cadastrada com sucesso!");
 
         } catch (PropriedadeAlreadyExistsException e) {
@@ -48,15 +53,21 @@ public class TestCadastroPropriedade {
 			e.printStackTrace();
 		} catch (UnregisteredGerenteException e) {
 			e.printStackTrace();
+		} catch (UnregisteredPropriedadeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectOutsideArrayException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        System.out.println(repositorioProp.existe(propriedade.getIdPropriedade())); 
         
-        Registro[] registros =propriedade.getRegistros();
-		
+       /* Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
         for(Registro registro: registros) {
         	String a = registro.toString();
         	System.out.println(a); 
         }
-        
+       */ 
 	}
 
 }

@@ -16,14 +16,14 @@ public class Reserva {
 	public void reservar(Registro registro, User userDemanda) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
 		
 		if(registro.getOwner().equals(userDemanda)) {
-			if(registro.getReservado()) {
+			if(!registro.getReservado()) {
 				this.setReter(userDemanda);
 				registro.setReservado(true);
 			}else {
 				throw new WeekAlreadyReservedException(); 
 			}
 		}else {
-			if(registro.getAvailabe() && registro.getReservado()) {
+			if(registro.getAvailabe() && !registro.getReservado()) {
 				registro.getPriceReserva();
 				if(this.pagamento()) {
 					this.setReter(userDemanda);
