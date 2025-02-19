@@ -5,7 +5,11 @@ import java.io.Serializable;
 public class Registro implements Serializable {
 	
 	
-      private byte fraction; //semana correspondente 
+      /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5128698518539342562L;
+	private byte fraction; //semana correspondente 
       private final String idRegistro; //id pelo qual o registro deve ser identificado (uma vez estabelecido, assim ficará)
       private Propriedade propriedade; //propriedade vinculada 
       private User owner; //proprietário do registro 

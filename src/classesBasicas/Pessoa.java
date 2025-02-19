@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 public abstract class Pessoa implements Serializable {
 
-    private String cpf;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4928551210291065833L;
+	private String cpf;
     private String nome;
 
     Pessoa(String cpf, String nome){

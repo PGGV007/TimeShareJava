@@ -5,7 +5,11 @@ import java.util.Objects;
 
 public class User extends Pessoa{
 	
-    private final String idUser;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 31606448599822120L;
+	private final String idUser;
     private final String senha; 
     
 

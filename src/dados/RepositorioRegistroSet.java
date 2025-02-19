@@ -6,6 +6,11 @@ import classesBasicas.Registro;
 public class RepositorioRegistroSet extends RepositorioGenericoSet implements IRepositorio {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3521366911367174311L;
+
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {
 		

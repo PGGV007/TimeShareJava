@@ -8,7 +8,11 @@ import exceptions.ObjectOutsideArrayException;
 
 public abstract class RepositorioGenericoSet implements IRepositorio, Serializable  {
 	
-	 protected Set<Object> repositorio = new HashSet<>(); 
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8270543749004816682L;
+	protected Set<Object> repositorio = new HashSet<>(); 
 
 	@Override
 	public void atualizar(Object obj) 	throws ObjectOutsideArrayException {

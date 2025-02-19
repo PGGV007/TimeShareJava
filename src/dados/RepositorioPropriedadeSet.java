@@ -5,6 +5,11 @@ import classesBasicas.Propriedade;
 
 public class RepositorioPropriedadeSet extends RepositorioGenericoSet implements IRepositorio {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3406448142133621039L;
+
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {
 		

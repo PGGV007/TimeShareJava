@@ -97,7 +97,7 @@ public class CadastroPropriedade {
 		}
 	}
 	
-	private boolean existe(Propriedade a) {
+	public boolean existe(Propriedade a) {
 		return repositorioPropriedade.existe(a.getIdPropriedade()); 
 	}
 	

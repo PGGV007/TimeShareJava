@@ -2,6 +2,10 @@ package classesBasicas;
 
 public class Gerente extends Pessoa {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6493816640950608342L;
 	private final String idGerente;
 	private final String senha;
 	

@@ -7,6 +7,10 @@ import java.util.Map;
 
 public class Propriedade implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3495175078773917586L;
 	private String nome; 
 	private String localization;
 	private String description; 
