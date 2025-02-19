@@ -1,19 +1,28 @@
 package business;
 
 import classesBasicas.User;
+
+import java.io.Serializable;
+
+import classesBasicas.GeradorId;
 import classesBasicas.Registro;
 import dados.IRepositorio;
 import exceptions.ObjectOutsideArrayException;
 
-public class Transfer {
+public class Transfer implements Serializable {
 	
+
+	private static final long serialVersionUID = -5755980943068625147L;
 	private IRepositorio repositorioRegistro; 
 	private IRepositorio repositorioUser;  
+	private final  String id; 
+	
 	
 	
 	public Transfer(IRepositorio repositorioRegistro, IRepositorio repositorioUser){
 		this.repositorioRegistro = repositorioRegistro;
 		this.repositorioUser = repositorioUser; 
+		this.id = GeradorId.geradorHexId(6);
 	}
 	
 	public void transfer(String idUser, String idRegistro) throws ObjectOutsideArrayException 
@@ -30,6 +39,10 @@ public class Transfer {
 			throw new  IllegalArgumentException("Usuário inválido"); 
 		}
 		
+	}
+
+	public String getIdTransfer() {
+		return id;
 	}	
 	
 }

@@ -6,12 +6,21 @@ import exceptions.WeekAlreadyReservedException;
 import exceptions.PaymentNotCompletedException;
 import exceptions.WeekNotAvailableException;
 
+import java.io.Serializable;
+
+import classesBasicas.GeradorId;
 
 
-public class Reserva {
-	
+
+public class Reserva implements Serializable{
+
+	private static final long serialVersionUID = 6488767664342405141L;
 	private User renter; 
+	private final String idReserva; 
 	
+	public Reserva() {
+		this.idReserva = GeradorId.geradorHexId(6); 
+	}
 	
 	public void reservar(Registro registro, User userDemanda) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
 		
@@ -49,6 +58,12 @@ public class Reserva {
 	public User getRenter() {
 		return this.renter; 
 	}
+
+	public String getIdReserva() {
+		return idReserva;
+	}
+
+	
 	
 	
 	
