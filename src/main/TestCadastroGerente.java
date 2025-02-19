@@ -14,7 +14,7 @@ public class TestCadastroGerente {
         CadastroGerente cadastroGerente = new CadastroGerente(repositorio);
 
         // Criar um gerente
-        Gerente gerente = new Gerente("123","joshua");
+        Gerente gerente = new Gerente("123","joshua","321");
 
         try {
             // Testar cadastro do gerente

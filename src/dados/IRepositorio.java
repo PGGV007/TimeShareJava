@@ -1,7 +1,7 @@
 package dados;
 import exceptions.ObjectOutsideArrayException; 
 
-public interface IRepositorio {
+public interface IRepositorio  {
 	
 	public void atualizar (Object obj) throws ObjectOutsideArrayException ; //Atualiza o objeto em questão por sua versão mais nova
 	

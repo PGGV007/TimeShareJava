@@ -9,8 +9,8 @@ public class TesteRepositorios {
 	
 	public static void  main(String [] args ) {
 		
-		Gerente g = new Gerente("joão","123"); 
-		User u = new User("Joshua","321"); 
+		Gerente g = new Gerente("joão","123","321"); 
+		User u = new User("Joshua","321","123"); 
 		
 		IRepositorio repUser= new RepositorioUserSet();
 		IRepositorio repGer = new RepositorioGerenteSet(); 

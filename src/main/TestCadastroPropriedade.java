@@ -31,7 +31,7 @@ public class TestCadastroPropriedade {
         LocalDate date = LocalDate.now(); 
         // Criar um gerente
         Propriedade propriedade = new Propriedade("Praia","bonita","Rural",100,20, date); 
-        Gerente gerente = new Gerente("123","joshua");
+        Gerente gerente = new Gerente("123","joshua","321");
         
 
         try {
@@ -62,12 +62,12 @@ public class TestCadastroPropriedade {
 		}
         System.out.println(repositorioProp.existe(propriedade.getIdPropriedade())); 
         
-       /* Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
+     /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
         for(Registro registro: registros) {
         	String a = registro.toString();
         	System.out.println(a); 
         }
-       */ 
+       */
 	}
 
 }

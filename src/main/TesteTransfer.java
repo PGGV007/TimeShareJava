@@ -22,8 +22,8 @@ public class TesteTransfer {
 		Transfer t = new Transfer(repositorioRegi,repositorioUser); 
 		Propriedade propriedade = new Propriedade("Praia","bonita","Rural",100,20, date); 
 		
-		User u = new User("123", "jonh");
-		User j = new User("321", "joshua");
+		User u = new User("123", "jonh","123");
+		User j = new User("321", "joshua","123");
 		Registro r = new Registro(((byte)1), propriedade, u);
 		
 		repositorioRegi.adicionar(r);

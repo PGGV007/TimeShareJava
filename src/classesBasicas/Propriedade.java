@@ -1,10 +1,11 @@
 package classesBasicas;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map; 
 
-public class Propriedade {
+public class Propriedade implements Serializable {
 	
 	private String nome; 
 	private String localization;

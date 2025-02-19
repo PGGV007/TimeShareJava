@@ -1,11 +1,12 @@
 package dados;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set; 
 
 import exceptions.ObjectOutsideArrayException;
 
-public abstract class RepositorioGenericoSet implements IRepositorio {
+public abstract class RepositorioGenericoSet implements IRepositorio, Serializable  {
 	
 	 protected Set<Object> repositorio = new HashSet<>(); 
 
