@@ -10,6 +10,9 @@ import classesBasicas.Gerente;
 import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import business.LoginUser;
+
+import java.io.IOException;
+
 import business.CadastroGerente;
 import business.CadastroPropriedade;
 import business.CadastroUser;
@@ -21,6 +24,7 @@ import exceptions.WrongPasswordException;
 import exceptions.PaymentNotCompletedException;
 import exceptions.WeekAlreadyReservedException;
 import exceptions.WeekNotAvailableException;
+import exceptions.EmptyArchiveException;
 import exceptions.GerenteAlreadyExistsException;
 import exceptions.UserAlreadyExistsException;
 import exceptions.UnregisteredPropriedadeException;
@@ -31,10 +35,10 @@ import exceptions.ObjectOutsideArrayException;
 
 public class Fachada {
 	
-	private IRepositorio repUser = new RepositorioUserSet();
-	private IRepositorio repRegis = new RepositorioRegistroSet();
-	private IRepositorio repPropriedade = new RepositorioRegistroSet(); 
-	private IRepositorio repGerente = new RepositorioGerenteSet(); 
+private IRepositorio repUser = new RepositorioUserSet("arquivo_user.dat");
+	private IRepositorio repRegis = new RepositorioRegistroSet("arquivo_registro.dat");
+	private IRepositorio repPropriedade = new RepositorioRegistroSet("arquivo_propriedade.dat"); 
+	private IRepositorio repGerente = new RepositorioGerenteSet("arquivo_gerente.dat"); 
 	
 	private LoginGerente loginGerente = new LoginGerente(repGerente); 
 	private LoginUser loginUser = new LoginUser(repUser); 
@@ -47,44 +51,44 @@ public class Fachada {
 		
 	}
 	
-	public void existeGerente(Gerente g) {
+	public void existeGerente(Gerente g) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		cadGer.existe(g); 
 	}
-	public void existeProrpriedade(Propriedade p, Gerente g) {
+	public void existeProrpriedade(Propriedade p, Gerente g) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		cadProp.existe(p); 
 	}
 	
-	public void existeUser(User g) {
+	public void existeUser(User g) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		cadUser.existe(g); 
 	}
 	
-	public void cadastrarUser(User a) throws UserAlreadyExistsException {
+	public void cadastrarUser(User a) throws UserAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadUser.cadastrar(a);
 	}
 	
-	public void cadastrarGerente(Gerente a) throws  GerenteAlreadyExistsException {
+	public void cadastrarGerente(Gerente a) throws  GerenteAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadGer.cadastrar(a);
 	}
 	
-	public void cadastrarPropriedade(Propriedade a, String idGerente) throws  UnregisteredGerenteException, PropriedadeAlreadyExistsException {
+	public void cadastrarPropriedade(Propriedade a, String idGerente) throws  UnregisteredGerenteException, PropriedadeAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadProp.cadastrar(idGerente,a);
 	}
 	
-	public void descadastrarUser(String idUser) throws ObjectOutsideArrayException, UnregisteredUserException {
+	public void descadastrarUser(String idUser) throws ObjectOutsideArrayException, UnregisteredUserException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadUser.descadastrar(idUser);
 	}
-	public void descadastrarPropriedade(String idPropriedade, String idGerente) throws ObjectOutsideArrayException,UnregisteredGerenteException, UnregisteredPropriedadeException {
+	public void descadastrarPropriedade(String idPropriedade, String idGerente) throws ObjectOutsideArrayException,UnregisteredGerenteException, UnregisteredPropriedadeException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadProp.descadastrar(idGerente, idPropriedade);
 	}
-	public void descadastrarGerente(String idGerente ) throws ObjectOutsideArrayException, UnregisteredGerenteException {
+	public void descadastrarGerente(String idGerente ) throws ObjectOutsideArrayException, UnregisteredGerenteException, ClassNotFoundException, IOException, EmptyArchiveException {
 		cadGer.descadastrar(idGerente);
 	}
 	
-	public void loginGerente( String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException {
+	public void loginGerente( String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		loginGerente.efetuarLogin(id, senha);
 	}
 	
-	public void loginUser( String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException {
+	public void loginUser( String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		loginUser.efetuarLogin(id, senha);
 	}
 	

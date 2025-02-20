@@ -1,7 +1,11 @@
 package business;
 
 import dados.IRepositorio;
+
+import java.io.IOException;
+
 import classesBasicas.Gerente;
+import exceptions.EmptyArchiveException;
 import exceptions.GerenteAlreadyExistsException;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.UnregisteredGerenteException;
@@ -16,15 +20,16 @@ public class CadastroGerente {
 	
 	
 	
-	public boolean existe(Gerente gerente) {
+	public boolean existe(Gerente gerente) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		return repositorio.existe(gerente.getIdGerente()); 
 	}
 	
-	public void cadastrar (Gerente gerente) throws GerenteAlreadyExistsException{
+	public void cadastrar (Gerente gerente) throws GerenteAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException{
 		
 		if(gerente != null) {
 			
 			if(repositorio.existe(gerente.getIdGerente()) == false) {
+				
 				repositorio.adicionar(gerente);
 			}else{
 				throw new GerenteAlreadyExistsException(); 
@@ -36,7 +41,7 @@ public class CadastroGerente {
 		
 	}
 	
-	public void descadastrar(String id) throws ObjectOutsideArrayException, UnregisteredGerenteException  {
+	public void descadastrar(String id) throws ObjectOutsideArrayException, UnregisteredGerenteException, ClassNotFoundException, IOException, EmptyArchiveException  {
 		if(id != null) {
 			
 			if(repositorio.existe(id) == true) {
@@ -51,7 +56,7 @@ public class CadastroGerente {
 		
 	}
 	
-	public void atualizar(String id) throws ObjectOutsideArrayException, UnregisteredGerenteException{
+	public void atualizar(String id) throws ObjectOutsideArrayException, UnregisteredGerenteException, ClassNotFoundException, IOException, EmptyArchiveException{
 		
 		if(id != null) {
 			

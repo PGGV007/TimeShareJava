@@ -1,6 +1,9 @@
 package business;
+import java.io.IOException;
+
 import classesBasicas.Gerente;
 import dados.IRepositorio;
+import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.UnregisteredGerenteException;
 import exceptions.WrongPasswordException;
@@ -14,7 +17,7 @@ public class LoginGerente {
 		this.repositorio = repositorio; 
 	}
 	
-	public boolean efetuarLogin(String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException  {
+	public boolean efetuarLogin(String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException  {
 		
 		if(repositorio.existe(id)) { 
 			

@@ -1,8 +1,11 @@
 package dados;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import business.Transfer;
+import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
 
 public class RepositorioTransferSet extends RepositorioGenericoSet implements IRepositorio, Serializable {
@@ -13,13 +16,14 @@ public class RepositorioTransferSet extends RepositorioGenericoSet implements IR
 		super(arquivo); 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object procurar(String id) throws ObjectOutsideArrayException {
+	public Object procurar(String id) throws ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		boolean teste = false; 
 		Transfer j = null; ; 
-		
-		for(Object obj : repositorio) {
+		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		for(Object obj : clone) {
 			Transfer p = (Transfer) obj; 
 		   teste = p.getIdTransfer().equals(id); 
 		   if(teste == true) {
@@ -35,11 +39,21 @@ public class RepositorioTransferSet extends RepositorioGenericoSet implements IR
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean existe(String id) {
+	public boolean existe(String id) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		boolean teste = false; 
-		
-		for(Object obj : repositorio) {
+		List<Object> clone;
+		try {
+			
+			clone = (List<Object>)carregarDados(getArquivo());
+		} catch (EmptyArchiveException e) {
+			System.out.println("rodou");
+			return false; 	
+		} catch (ClassCastException e) {
+			return false;
+		}
+		for(Object obj : clone) {
 			Transfer p = (Transfer) obj; 
 			teste = p.getIdTransfer().equals(id); 
 		    if(teste == true) { 

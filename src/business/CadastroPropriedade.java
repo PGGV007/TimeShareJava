@@ -1,8 +1,11 @@
 package business;
 
+import java.io.IOException;
+
 import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import dados.IRepositorio;
+import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.UnregisteredGerenteException; 
 import exceptions.UnregisteredPropriedadeException;
@@ -26,7 +29,7 @@ public class CadastroPropriedade {
 	
 
 	
-	public  void cadastrar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, PropriedadeAlreadyExistsException{
+	public  void cadastrar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, PropriedadeAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException{
 		if(propriedade != null) {
 			if(repositorioGerente.existe(idGerente) == true ) {
 				if(this.existe(propriedade) != true) {
@@ -53,7 +56,7 @@ public class CadastroPropriedade {
 		
 	}
 	
-	public void descadastrar(String idGerente, String idPropriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException {
+	public void descadastrar(String idGerente, String idPropriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		boolean teste = false; 
 		Propriedade propriedade = (Propriedade) repositorioPropriedade.procurar(idPropriedade); 
@@ -79,13 +82,13 @@ public class CadastroPropriedade {
 		
 	}
 	
-	public void atualizar(String idGerente, String idPropriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException{
+	public void atualizar(String idGerente, String idPropriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException{
 		if(checkId(idGerente,idPropriedade) == true) {
 			repositorioPropriedade.atualizar((Propriedade)repositorioPropriedade.procurar(idPropriedade));
 		}
 	}
 	
-	private boolean checkId(String idGerente, String idPropriedade)  throws UnregisteredGerenteException, UnregisteredPropriedadeException {
+	private boolean checkId(String idGerente, String idPropriedade)  throws UnregisteredGerenteException, UnregisteredPropriedadeException, ClassNotFoundException, IOException, EmptyArchiveException {
 		if(repositorioGerente.existe(idGerente) == true) {
 			if(repositorioPropriedade.existe(idPropriedade)== true) {
 				return true; 
@@ -97,7 +100,7 @@ public class CadastroPropriedade {
 		}
 	}
 	
-	public boolean existe(Propriedade a) {
+	public boolean existe(Propriedade a) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		return repositorioPropriedade.existe(a.getIdPropriedade()); 
 	}
 	

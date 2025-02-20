@@ -9,12 +9,14 @@ import dados.IRepositorio;
 import dados.RepositorioPropriedadeSet;
 import dados.RepositorioRegistroSet;
 import dados.RepositorioGerenteSet;
+import exceptions.EmptyArchiveException;
 import exceptions.GerenteAlreadyExistsException;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.PropriedadeAlreadyExistsException;
 import exceptions.UnregisteredGerenteException;
 import exceptions.UnregisteredPropriedadeException;
 
+import java.io.IOException;
 import java.time.LocalDate; 
 
 public class TestCadastroPropriedade {
@@ -22,9 +24,9 @@ public class TestCadastroPropriedade {
 	public static void main(String[] args) {
 		
 		  // Criar um repositório simples em memória (você pode usar um repositório real depois)
-        IRepositorio repositorioProp = new RepositorioPropriedadeSet();  // Supondo que já tenha esse repositório
-        IRepositorio repositorioGer = new RepositorioGerenteSet();
-        IRepositorio repositorioRegi = new RepositorioRegistroSet();
+        IRepositorio repositorioProp = new RepositorioPropriedadeSet("arquivo_propriedade.dat");  // Supondo que já tenha esse repositório
+        IRepositorio repositorioGer = new RepositorioGerenteSet("arquivo_gerente.dat");
+        IRepositorio repositorioRegi = new RepositorioRegistroSet("arquivo_registro.dat");
         CadastroPropriedade cadastroPropriedade = new CadastroPropriedade(repositorioProp,repositorioGer,repositorioRegi );
         CadastroGerente cadastroGerente = new CadastroGerente(repositorioGer); 
 
@@ -59,8 +61,22 @@ public class TestCadastroPropriedade {
 		} catch (ObjectOutsideArrayException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EmptyArchiveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-        System.out.println(repositorioProp.existe(propriedade.getIdPropriedade())); 
+        try {
+			System.out.println(repositorioProp.existe(propriedade.getIdPropriedade()));
+		} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
         
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
         for(Registro registro: registros) {

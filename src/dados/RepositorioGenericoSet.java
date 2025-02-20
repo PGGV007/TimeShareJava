@@ -5,7 +5,7 @@ import java.util.Set;
 import java.io.*;
 
 import exceptions.ObjectOutsideArrayException;
-
+import exceptions.EmptyArchiveException;
 public abstract class RepositorioGenericoSet implements IRepositorio, Serializable  {
 	
 	private final String arquivo;
@@ -14,6 +14,7 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	
 	public RepositorioGenericoSet(String arquivo) {
 		this.arquivo = arquivo;
+		
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void listar() throws ClassNotFoundException, IOException {
+	public void listar() throws ClassNotFoundException, IOException, EmptyArchiveException {
 		Set<Object> clone  = (Set<Object>) carregarDados(getArquivo());
 		for(Object obj : clone) {
 			System.out.println(obj); 
@@ -61,7 +62,7 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	}
 
 	@Override
-	public Object procurar(String id) throws ObjectOutsideArrayException {
+	public Object procurar(String id) throws ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		//terá que ser feito em específico para todas as classe que lidaremos 
 		
@@ -69,7 +70,7 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	}
 
 	@Override
-	public boolean existe(String id) {
+	public boolean existe(String id) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		//terá que ser feito em específico para todas as classe que lidaremos 
 		
@@ -77,20 +78,41 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	}
 	
     protected void salvarDados(Object objeto, String arquivo) throws IOException {
-        try (FileOutputStream fileOut = new FileOutputStream(arquivo);
-             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
-            objectOut.writeObject(objeto);
-        }
+    	  File file = new File(arquivo);
+
+    	    // Verifica se o arquivo existe; se não, cria um novo
+    	    if (!file.exists()) {
+    	        file.createNewFile();
+    	    }
+
+    	    // Escreve o objeto no arquivo
+    	    try (FileOutputStream fileOut = new FileOutputStream(file);
+    	         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+    	        objectOut.writeObject(objeto);
+    	    }
     }
 
-    protected Object carregarDados(String arquivo) throws IOException, ClassNotFoundException {
-        try (FileInputStream fileIn = new FileInputStream(arquivo);
+    protected Object carregarDados(String arquivo) throws IOException, ClassNotFoundException, EmptyArchiveException {
+    	File file = new File(arquivo);
+
+        
+        if (!file.exists()) {
+            file.createNewFile();
+            
+        }
+
+        
+        try (FileInputStream fileIn = new FileInputStream(file);
              ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+        	
             return objectIn.readObject();
+        } catch (EOFException e) { 
+        	
+            throw new EmptyArchiveException(); 
         }
     }
 
-	public String getArquivo() {
+	public String getArquivo() {	
 		return arquivo;
 	}
 

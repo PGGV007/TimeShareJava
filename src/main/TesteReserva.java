@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import business.Reserva;
@@ -18,8 +19,8 @@ public class TesteReserva {
 	
 public static void main(String[] args) {
 		
-		IRepositorio repositorioRegi = new RepositorioRegistroSet();
-		IRepositorio repositorioUser = new RepositorioUserSet();
+		IRepositorio repositorioRegi = new RepositorioRegistroSet("arquivo_registro.dat");
+		IRepositorio repositorioUser = new RepositorioUserSet("arquivo_user.dat");
 		
 		LocalDate date = LocalDate.now(); 
 		Reserva reserva = new Reserva(); 
@@ -29,9 +30,24 @@ public static void main(String[] args) {
 		User j = new User("321", "joshua","123");
 		Registro r = new Registro(((byte)1), propriedade, u);
 		
-		repositorioRegi.adicionar(r);
-		repositorioUser.adicionar(j);
-		repositorioUser.adicionar(u);
+		try {
+			repositorioRegi.adicionar(r);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			repositorioUser.adicionar(j);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			repositorioUser.adicionar(u);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//r.setReservado(true);
 		r.setAvailabe(true);
 		try {

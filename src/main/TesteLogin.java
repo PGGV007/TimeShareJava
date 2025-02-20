@@ -2,9 +2,13 @@ package main;
 import classesBasicas.User;
 import dados.IRepositorio;
 import dados.RepositorioUserSet;
+import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.UnregisteredUserException;
 import exceptions.WrongPasswordException;
+
+import java.io.IOException;
+
 import business.LoginUser;
 
 public class TesteLogin {
@@ -12,8 +16,13 @@ public class TesteLogin {
 	public static void main(String[] args) {
 		
 		User u = new User("123","Jonh","321");
-		IRepositorio repositorio = new RepositorioUserSet(); 
-		repositorio.adicionar(u);
+		IRepositorio repositorio = new RepositorioUserSet("arquivo_user.dat"); 
+		try {
+			repositorio.adicionar(u);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		LoginUser login = new LoginUser(repositorio);
 		
 		try {
@@ -32,6 +41,15 @@ public class TesteLogin {
 			
 			e.printStackTrace();
 			System.out.println("Objeto fora do repositorio");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EmptyArchiveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

@@ -1,6 +1,11 @@
 package dados;
 
+import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
+
+import java.io.IOException;
+import java.util.List;
+
 import classesBasicas.User;
 
 public class RepositorioUserSet extends RepositorioGenericoSet implements IRepositorio {
@@ -13,12 +18,13 @@ public class RepositorioUserSet extends RepositorioGenericoSet implements IRepos
 	}
 
 	@Override
-	public Object procurar(String id) throws ObjectOutsideArrayException {
+	public Object procurar(String id) throws ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		boolean teste = false; 
 		User j = null; ; 
-		
-		for(Object obj : repositorio) {
+		@SuppressWarnings("unchecked")
+		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		for(Object obj : clone) {
 			User p = (User) obj; 
 		   teste = p.getIdUser().equals(id); 
 		   if(teste == true) {
@@ -33,12 +39,23 @@ public class RepositorioUserSet extends RepositorioGenericoSet implements IRepos
 		return j;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override 
-	public boolean existe(String id) {
+	public boolean existe(String id) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		boolean teste = false; 
 		
-		for(Object obj : repositorio) {
+		List<Object> clone;
+		try {
+			
+			clone = (List<Object>)carregarDados(getArquivo());
+		} catch (EmptyArchiveException e) {
+			System.out.println("rodou");
+			return false; 	
+		} catch (ClassCastException e) {
+			return false;
+		}
+		for(Object obj : clone) {
 			User p = (User) obj; 
 			teste = p.getIdUser().equals(id); 
 		    if(teste == true) { 
