@@ -9,6 +9,10 @@ public class RepositorioPropriedadeSet extends RepositorioGenericoSet implements
 	 * 
 	 */
 	private static final long serialVersionUID = -3406448142133621039L;
+	
+	public RepositorioPropriedadeSet(String arquivo) {
+		super(arquivo); 
+	}
 
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {

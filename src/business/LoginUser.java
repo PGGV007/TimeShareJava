@@ -14,7 +14,7 @@ public class LoginUser {
 		this.repositorio = repositorio; 
 	}
 	
-	public boolean efetuarLogin(String nome, String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException  {
+	public boolean efetuarLogin( String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException  {
 		
 		if(repositorio.existe(id)) { 
 			

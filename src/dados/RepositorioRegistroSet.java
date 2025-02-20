@@ -10,6 +10,10 @@ public class RepositorioRegistroSet extends RepositorioGenericoSet implements IR
 	 * 
 	 */
 	private static final long serialVersionUID = -3521366911367174311L;
+	
+	public RepositorioRegistroSet(String arquivo) {
+		super(arquivo); 
+	}
 
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {

@@ -17,7 +17,7 @@ public class TesteLogin {
 		LoginUser login = new LoginUser(repositorio);
 		
 		try {
-			login.efetuarLogin("Jonh", u.getIdUser(), "0");
+			login.efetuarLogin( u.getIdUser(), "0");
 			System.out.println("Sucesso");
 			System.out.println(u.getIdUser());
 		} catch (WrongPasswordException e) {

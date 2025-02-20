@@ -1,16 +1,21 @@
 package dados;
 
-import classesBasicas.Registro;
-import classesBasicas.User;
+
 import exceptions.ObjectOutsideArrayException;
+import java.io.Serializable;
+
 import business.Reserva;
 
-public class RepositorioReservaSet extends RepositorioGenericoSet implements IRepositorio {
+public class RepositorioReservaSet extends RepositorioGenericoSet implements IRepositorio, Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7235730711312171961L;
+	
+	public RepositorioReservaSet(String arquivo) {
+		super(arquivo); 
+	}
 	
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {

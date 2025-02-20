@@ -5,10 +5,12 @@ import classesBasicas.User;
 
 public class RepositorioUserSet extends RepositorioGenericoSet implements IRepositorio {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 128181906860523572L;
+	
+	public RepositorioUserSet(String arquivo) {
+		super(arquivo); 
+	}
 
 	@Override
 	public Object procurar(String id) throws ObjectOutsideArrayException {

@@ -80,12 +80,12 @@ public class Fachada {
 		cadGer.descadastrar(idGerente);
 	}
 	
-	public void loginGerente(String nome, String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException {
-		loginGerente.efetuarLogin(nome, id, senha);
+	public void loginGerente( String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException {
+		loginGerente.efetuarLogin(id, senha);
 	}
 	
-	public void loginUser(String nome, String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException {
-		loginUser.efetuarLogin(nome, id, senha);
+	public void loginUser( String id, String senha) throws WrongPasswordException, UnregisteredUserException, ObjectOutsideArrayException {
+		loginUser.efetuarLogin(id, senha);
 	}
 	
 	

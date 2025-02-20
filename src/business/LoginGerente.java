@@ -3,7 +3,6 @@ import classesBasicas.Gerente;
 import dados.IRepositorio;
 import exceptions.ObjectOutsideArrayException;
 import exceptions.UnregisteredGerenteException;
-import exceptions.UnregisteredUserException;
 import exceptions.WrongPasswordException;
 
 
@@ -15,7 +14,7 @@ public class LoginGerente {
 		this.repositorio = repositorio; 
 	}
 	
-	public boolean efetuarLogin(String nome, String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException  {
+	public boolean efetuarLogin(String id, String senha) throws WrongPasswordException, UnregisteredGerenteException, ObjectOutsideArrayException  {
 		
 		if(repositorio.existe(id)) { 
 			
