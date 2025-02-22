@@ -84,7 +84,7 @@ public class Reserva implements Serializable{
 		return idReserva;
 	}
 
-	public boolean isAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 
