@@ -5,6 +5,7 @@ import exceptions.ObjectOutsideArrayException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import classesBasicas.User;
 
@@ -23,7 +24,7 @@ public class RepositorioUserSet extends RepositorioGenericoSet implements IRepos
 		boolean teste = false; 
 		User j = null; ; 
 		@SuppressWarnings("unchecked")
-		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		Set<Object> clone = (Set<Object>)carregarDados(getArquivo());
 		for(Object obj : clone) {
 			User p = (User) obj; 
 		   teste = p.getIdUser().equals(id); 
@@ -45,10 +46,10 @@ public class RepositorioUserSet extends RepositorioGenericoSet implements IRepos
 		
 		boolean teste = false; 
 		
-		List<Object> clone;
+		Set<Object> clone;
 		try {
 			
-			clone = (List<Object>)carregarDados(getArquivo());
+			clone = (Set<Object>)carregarDados(getArquivo());
 		} catch (EmptyArchiveException e) {
 			System.out.println("rodou");
 			return false; 	

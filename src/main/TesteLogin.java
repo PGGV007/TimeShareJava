@@ -1,6 +1,7 @@
 package main;
 import classesBasicas.User;
 import dados.IRepositorio;
+import dados.RepositorioRegistroSet;
 import dados.RepositorioUserSet;
 import exceptions.EmptyArchiveException;
 import exceptions.ObjectOutsideArrayException;
@@ -17,13 +18,14 @@ public class TesteLogin {
 		
 		User u = new User("123","Jonh","321");
 		IRepositorio repositorio = new RepositorioUserSet("arquivo_user.dat"); 
+		RepositorioRegistroSet repositorioRegistro = new RepositorioRegistroSet("arquivo_registro.dat"); 
 		try {
 			repositorio.adicionar(u);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LoginUser login = new LoginUser(repositorio);
+		LoginUser login = new LoginUser(repositorio, repositorioRegistro);
 		
 		try {
 			login.efetuarLogin( u.getIdUser(), "0");

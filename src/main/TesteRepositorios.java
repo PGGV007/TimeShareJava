@@ -3,6 +3,7 @@ import dados.IRepositorio;
 import dados.RepositorioGerenteSet;
 import dados.RepositorioUserSet;
 import exceptions.EmptyArchiveException;
+import exceptions.ObjectOutsideArrayException;
 
 import java.io.IOException;
 
@@ -21,6 +22,12 @@ public class TesteRepositorios {
 		
 		try {
 			repUser.adicionar(u);
+			try {
+				repUser.retirar(u);
+			} catch (ObjectOutsideArrayException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

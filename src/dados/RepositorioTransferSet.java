@@ -3,6 +3,7 @@ package dados;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import business.Transfer;
 import exceptions.EmptyArchiveException;
@@ -22,7 +23,7 @@ public class RepositorioTransferSet extends RepositorioGenericoSet implements IR
 		
 		boolean teste = false; 
 		Transfer j = null; ; 
-		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		Set<Object> clone = (Set<Object>)carregarDados(getArquivo());
 		for(Object obj : clone) {
 			Transfer p = (Transfer) obj; 
 		   teste = p.getIdTransfer().equals(id); 
@@ -43,10 +44,10 @@ public class RepositorioTransferSet extends RepositorioGenericoSet implements IR
 	@Override
 	public boolean existe(String id) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		boolean teste = false; 
-		List<Object> clone;
+		Set<Object> clone;
 		try {
 			
-			clone = (List<Object>)carregarDados(getArquivo());
+			clone = (Set<Object>)carregarDados(getArquivo());
 		} catch (EmptyArchiveException e) {
 			System.out.println("rodou");
 			return false; 	

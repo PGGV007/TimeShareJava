@@ -5,6 +5,7 @@ import exceptions.ObjectOutsideArrayException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import classesBasicas.Gerente; 
 
@@ -22,7 +23,7 @@ public class RepositorioGerenteSet extends RepositorioGenericoSet implements IRe
 		
 		boolean teste = false; 
 		Gerente j = null; ; 
-		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		Set<Object> clone = (Set<Object>)carregarDados(getArquivo());
 		for(Object obj : clone) {
 			Gerente p = (Gerente) obj; 
 		   teste = p.getIdGerente().equals(id); 
@@ -43,10 +44,10 @@ public class RepositorioGerenteSet extends RepositorioGenericoSet implements IRe
 	public boolean existe(String id) throws ClassNotFoundException, IOException {
 		
 		boolean teste = false; 
-		List<Object> clone;
+		Set<Object> clone;
 		try {
 			
-			clone = (List<Object>)carregarDados(getArquivo());
+			clone = (Set<Object>)carregarDados(getArquivo());
 		} catch (EmptyArchiveException e) {
 			return false; 	
 		} catch (ClassCastException e) {

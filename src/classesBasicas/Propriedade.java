@@ -125,4 +125,5 @@ public class Propriedade implements Serializable {
 	}
 	
 	
+	
 }

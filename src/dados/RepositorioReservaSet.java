@@ -6,9 +6,12 @@ import exceptions.ObjectOutsideArrayException;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import business.Reserva;
+import classesBasicas.User;
 
 public class RepositorioReservaSet extends RepositorioGenericoSet implements IRepositorio, Serializable {
 
@@ -27,7 +30,7 @@ public class RepositorioReservaSet extends RepositorioGenericoSet implements IRe
 		
 		boolean teste = false; 
 		Reserva j = null; ; 
-		List<Object> clone = (List<Object>)carregarDados(getArquivo());
+		Set<Object> clone = (Set<Object>)carregarDados(getArquivo());
 		for(Object obj : clone) {
 			Reserva p = (Reserva) obj; 
 		   teste = p.getIdReserva().equals(id); 
@@ -49,10 +52,10 @@ public class RepositorioReservaSet extends RepositorioGenericoSet implements IRe
 	public boolean existe(String id) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		
 		boolean teste = false; 
-		List<Object> clone;
+		Set<Object> clone;
 		try {
 			
-			clone = (List<Object>)carregarDados(getArquivo());
+			clone = (Set<Object>)carregarDados(getArquivo());
 		} catch (EmptyArchiveException e) {
 			System.out.println("rodou");
 			return false; 	
@@ -69,6 +72,28 @@ public class RepositorioReservaSet extends RepositorioGenericoSet implements IRe
 		
 		return teste; 
 		 
+	}
+	
+	public Set<Reserva> procurarUser(User owner){
+		
+		Set<Reserva> reservas = new HashSet<Reserva>(); 
+	
+		if(owner != null) {
+			
+			for(Object obj : repositorio) {
+				
+				Reserva r = (Reserva) obj; 
+				if(r.getRenter().equals(owner)) {
+					reservas.add(r);
+				}
+				
+			}
+			
+		}else {
+			
+		}
+		return reservas; 
+		
 	}
 
 }

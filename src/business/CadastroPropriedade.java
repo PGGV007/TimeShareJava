@@ -32,6 +32,7 @@ public class CadastroPropriedade {
 	public  void cadastrar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, PropriedadeAlreadyExistsException, ClassNotFoundException, IOException, EmptyArchiveException{
 		if(propriedade != null) {
 			if(repositorioGerente.existe(idGerente) == true ) {
+				 
 				if(this.existe(propriedade) != true) {
 					repositorioPropriedade.adicionar(propriedade); 
 					for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 

@@ -38,10 +38,12 @@ public class TestCadastroPropriedade {
 
         try {
         	cadastroGerente.cadastrar(gerente); 
+        	System.out.println(repositorioGer.existe(gerente.getIdGerente()));
             // Testar cadastro do gerente
             cadastroPropriedade.cadastrar(gerente.getIdGerente(),propriedade);
             propriedade.setCapacidade(200);
             cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
+            
            // cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());
             System.out.println("Propriedade cadastrada com sucesso!");
 

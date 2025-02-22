@@ -51,7 +51,7 @@ public static void main(String[] args) {
 		//r.setReservado(true);
 		r.setAvailabe(true);
 		try {
-			reserva.reservar(r, j);
+			reserva.reservar(r, j, 2025);
 			System.out.println("Reserva realizada"); 
 		} catch (WeekAlreadyReservedException | PaymentNotCompletedException | WeekNotAvailableException e) {
 			// TODO Auto-generated catch block

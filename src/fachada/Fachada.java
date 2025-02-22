@@ -41,7 +41,7 @@ private IRepositorio repUser = new RepositorioUserSet("arquivo_user.dat");
 	private IRepositorio repGerente = new RepositorioGerenteSet("arquivo_gerente.dat"); 
 	
 	private LoginGerente loginGerente = new LoginGerente(repGerente); 
-	private LoginUser loginUser = new LoginUser(repUser); 
+	private LoginUser loginUser = new LoginUser(repUser, (RepositorioRegistroSet)repRegis); 
 	
 	private CadastroUser cadUser= new CadastroUser(repUser); 
 	private CadastroPropriedade cadProp = new CadastroPropriedade(repPropriedade,repGerente,repRegis);
