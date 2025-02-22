@@ -8,6 +8,9 @@ import exceptions.ObjectOutsideArrayException;
 import exceptions.EmptyArchiveException;
 public abstract class RepositorioGenericoSet implements IRepositorio, Serializable  {
 	
+	
+	
+	
 	private final String arquivo;
 	private static final long serialVersionUID = 8270543749004816682L;
 	protected Set<Object> repositorio = new HashSet<>(); 

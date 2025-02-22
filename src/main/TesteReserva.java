@@ -17,46 +17,25 @@ import exceptions.WeekNotAvailableException;
 
 public class TesteReserva {
 	
-public static void main(String[] args) {
+public static void main(String[] args)  {
 		
 		IRepositorio repositorioRegi = new RepositorioRegistroSet("arquivo_registro.dat");
 		IRepositorio repositorioUser = new RepositorioUserSet("arquivo_user.dat");
 		
 		LocalDate date = LocalDate.now(); 
-		Reserva reserva = new Reserva(); 
+		
 		Propriedade propriedade = new Propriedade("Praia","bonita","Rural",100,20, date); 
 		
 		User u = new User("123", "jonh","123");
 		User j = new User("321", "joshua","123");
 		Registro r = new Registro(((byte)1), propriedade, u);
-		
 		try {
-			repositorioRegi.adicionar(r);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			repositorioUser.adicionar(j);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			repositorioUser.adicionar(u);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//r.setReservado(true);
-		r.setAvailabe(true);
-		try {
-			reserva.reservar(r, j, 2025);
-			System.out.println("Reserva realizada"); 
+			Reserva reserva = new Reserva(r,u,2025);
 		} catch (WeekAlreadyReservedException | PaymentNotCompletedException | WeekNotAvailableException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Semana já ocupada"); 
 			e.printStackTrace();
-		}
+		} 
+		
 		
 		
 		

@@ -3,6 +3,7 @@ package fachada;
 import dados.IRepositorio;
 import dados.RepositorioUserSet;
 import dados.RepositorioRegistroSet;
+import dados.RepositorioReservaSet;
 import dados.RepositorioGerenteSet;
 import dados.RepositorioPropriedadeSet;
 import classesBasicas.User;
@@ -39,9 +40,9 @@ private IRepositorio repUser = new RepositorioUserSet("arquivo_user.dat");
 	private IRepositorio repRegis = new RepositorioRegistroSet("arquivo_registro.dat");
 	private IRepositorio repPropriedade = new RepositorioRegistroSet("arquivo_propriedade.dat"); 
 	private IRepositorio repGerente = new RepositorioGerenteSet("arquivo_gerente.dat"); 
-	
+	private IRepositorio repReserva = new RepositorioReservaSet("arquivo_reserva.dat"); 
 	private LoginGerente loginGerente = new LoginGerente(repGerente); 
-	private LoginUser loginUser = new LoginUser(repUser, (RepositorioRegistroSet)repRegis); 
+	private LoginUser loginUser = new LoginUser(repUser,(RepositorioReservaSet)repReserva) ; 
 	
 	private CadastroUser cadUser= new CadastroUser(repUser); 
 	private CadastroPropriedade cadProp = new CadastroPropriedade(repPropriedade,repGerente,repRegis);

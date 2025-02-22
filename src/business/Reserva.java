@@ -24,12 +24,14 @@ public class Reserva implements Serializable{
 	private final String idReserva; 
 	private boolean ativo; 
 	private  final LocalDate dataInicial; 
+	private final Registro registro; 
 	
 	public Reserva(Registro registro, User userDemanda, int ano) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
 		this.idReserva = GeradorId.geradorHexId(6); 
 		this.reservar(registro, userDemanda);
 		LocalDate dataInicial = ((registro.getPropriedade()).getSemana((int)(registro.getFraction()), ano));//pega a data referente ao ano da fração correspondente na propriedade
 		this.dataInicial = dataInicial; 
+		this.registro = registro; 
 	}
 	
 	private void reservar(Registro registro, User userDemanda) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
@@ -59,7 +61,7 @@ public class Reserva implements Serializable{
 	}
 	
 	public void retirarReserva(String id, IRepositorio rep, Registro reg) throws ClassNotFoundException, IOException, EmptyArchiveException {
-		if(id.equals(renter.getIdUser()) || rep.existe(id)) {
+		if(id.equals(renter.getIdUser()) && rep.existe(id)) {
 			reg.setReservado(false);
 		}
 		//faz com que a reserva seja desativada.
@@ -92,6 +94,10 @@ public class Reserva implements Serializable{
 
 	public LocalDate getDataInicial() {
 		return dataInicial;
+	}
+
+	public Registro getRegistro() {
+		return registro;
 	}
 
 	
