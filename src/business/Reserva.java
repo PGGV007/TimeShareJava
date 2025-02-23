@@ -7,7 +7,7 @@ import exceptions.WeekAlreadyReservedException;
 import exceptions.EmptyArchiveException;
 import exceptions.PaymentNotCompletedException;
 import exceptions.WeekNotAvailableException;
-import classesBasicas.Propriedade;
+
 
 import java.io.IOException;
 import java.io.Serializable;

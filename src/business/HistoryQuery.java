@@ -7,6 +7,7 @@ import classesBasicas.Registro;
 import classesBasicas.User;
 import dados.IRepositorio;
 
+@SuppressWarnings("unused")
 public class HistoryQuery {
 	
 	private IRepositorio repositorio; //repositorio de reservas

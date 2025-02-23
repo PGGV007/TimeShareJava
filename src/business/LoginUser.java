@@ -1,7 +1,6 @@
 package business;
 import java.io.IOException;
 
-import classesBasicas.Registro;
 import classesBasicas.User;
 import dados.IRepositorio;
 import exceptions.EmptyArchiveException;
@@ -11,7 +10,6 @@ import exceptions.WrongPasswordException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.time.temporal.ChronoUnit;
-import dados.RepositorioRegistroSet;
 import dados.RepositorioReservaSet;
 
 

@@ -16,14 +16,12 @@ public class CadastroPropriedade {
 
 	private IRepositorio repositorioPropriedade ;
 	private IRepositorio repositorioGerente; 
-	private IRepositorio repositorioRegistro; 
-	private Registro[] registros; 
+	private IRepositorio repositorioRegistro;  
 	
 	public CadastroPropriedade(IRepositorio repositorioPropriedade,IRepositorio repositorioGerente, IRepositorio repositorioRegistro ) {
 		this.repositorioGerente = repositorioGerente; 
 		this.repositorioPropriedade = repositorioPropriedade; 
 		this.repositorioRegistro = repositorioRegistro; 
-		this.registros = new Registro[52]; 
 	}
 	
 	
@@ -35,13 +33,10 @@ public class CadastroPropriedade {
 				 
 				if(this.existe(propriedade) != true) {
 					repositorioPropriedade.adicionar(propriedade); 
-					for(int i = 0; i<52;i++) { //estabelecimento dos registros inerentes à propriedade 
-						 Registro reg = new Registro(((byte)1),propriedade);
-						 registros[i] = reg;
-						 registros[i].setFraction((byte)(i + 1));
-						 propriedade.addRegistros(registros[i], i); //alocação dos registros dentro da propriedade relacionada 
-						 this.repositorioRegistro.adicionar(registros[i]); //alocação dos registros dentro do repositório geral 
-					 }
+					Registro[] reg = propriedade.getRegistros(); 
+					for(int i = 0; i<52; i++) {
+						repositorioRegistro.adicionar(reg[i]);
+					}
 				}else {
 					throw new PropriedadeAlreadyExistsException(); 
 				}
@@ -73,7 +68,8 @@ public class CadastroPropriedade {
 			throw new IllegalArgumentException("A propriedade em questão não pode ser descadastrada, há reservas efetuadas."); 
 		}else {
 			if(checkId(idGerente,idPropriedade) == true) {
-				repositorioPropriedade.retirar((Propriedade)repositorioPropriedade.procurar(idPropriedade));//retira a propriedade do reposirório 
+				Propriedade p = (Propriedade)repositorioPropriedade.procurar(idPropriedade);
+				repositorioPropriedade.retirar(p);//retira a propriedade do reposirório 
 				for(int i = 0; i<52;i++){
 					repositorioRegistro.retirar(registros[i]);//retira todos os registros relacionados à propriedade do repositório 
 				}

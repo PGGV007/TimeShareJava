@@ -33,53 +33,77 @@ public class TestCadastroPropriedade {
         LocalDate date = LocalDate.now(); 
         // Criar um gerente
         Propriedade propriedade = new Propriedade("Praia","bonita","Rural",100,20, date); 
+        Propriedade propriedade2 = new Propriedade("Praia","bonita","Rural",100,20, date); 
+        Propriedade propriedade3 = new Propriedade("Praia","bonita","Rural",100,20, date);
         Gerente gerente = new Gerente("123","joshua","321");
         
-
-        try {
-        	cadastroGerente.cadastrar(gerente); 
-        	System.out.println(repositorioGer.existe(gerente.getIdGerente()));
-            // Testar cadastro do gerente
-            cadastroPropriedade.cadastrar(gerente.getIdGerente(),propriedade);
-            propriedade.setCapacidade(200);
-            cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
-            
-           // cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());
-            System.out.println("Propriedade cadastrada com sucesso!");
-
-        } catch (PropriedadeAlreadyExistsException e) {
-        	System.out.println("Rodou Catch"); 
-            System.out.println("Erro: Gerente já existe!");
-        } catch (IllegalArgumentException e) {
-        	System.out.println("Rodou Catch"); 
-            System.out.println("Erro: Gerente inválido!");
-        } catch (GerenteAlreadyExistsException e) {
+      //cadastramento do gerente
+       try {
+		cadastroGerente.cadastrar(gerente); 
+		System.out.println("Gerente registrado com sucesso"); 
+       } catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
+    	   System.out.println("Problema de arquivamento");
 			e.printStackTrace();
-		} catch (UnregisteredGerenteException e) {
-			e.printStackTrace();
-		} catch (UnregisteredPropriedadeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ObjectOutsideArrayException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmptyArchiveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        try {
-			System.out.println(repositorioProp.existe(propriedade.getIdPropriedade()));
-		} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-        
+       } catch (GerenteAlreadyExistsException e) {
+    	   System.out.println("Gerente já está registrado"); 
+       }
+       
+       //teste existe
+       try {
+    	   cadastroPropriedade.existe(propriedade);
+       }catch(ClassNotFoundException| IOException| EmptyArchiveException e) {
+    	   System.out.println("Problema de arquivamento");
+    	   e.printStackTrace();
+       }
+       
+       //cadastramento de propriedade 
+       try {
+    	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade);
+    	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade2);
+    	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade3);
+       }catch (ClassNotFoundException| IOException | EmptyArchiveException e){
+    	   System.out.println("Problema de arquivamento");
+    	   e.printStackTrace();
+       }catch(UnregisteredGerenteException e){
+    	   System.out.println("Gerente não regsitrado (problema de arquivamento)"); 
+       }catch(PropriedadeAlreadyExistsException e) {
+    	   System.out.println("Propriedade já registrada "); 
+       }
+       
+       propriedade.setCapacidade(500);
+       //teste atualização
+       try {
+    	   cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
+    	   System.out.println("Atualização concluída" + "  " + propriedade.getCapacidade());
+       }catch(UnregisteredGerenteException| UnregisteredPropriedadeException | ObjectOutsideArrayException| ClassNotFoundException| IOException| EmptyArchiveException e) {
+    	   System.out.println("Problema de arquivamento");
+    	   e.printStackTrace();
+       }
+       
+     /*  try {
+		cadastroPropriedade.descadastrar(gerente.getIdGerente(), "fe8493cb02f66924");
+	} catch (ClassNotFoundException | UnregisteredGerenteException | UnregisteredPropriedadeException
+			| ObjectOutsideArrayException | IOException | EmptyArchiveException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+       try {
+		repositorioProp.listar();
+	} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
+       //teste do descadastramento 
+       /*try {
+    	   cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());
+    	   System.out.println("Propriedade removida do array"); 
+       }catch(ObjectOutsideArrayException | ClassNotFoundException| IOException| EmptyArchiveException | UnregisteredGerenteException |  UnregisteredPropriedadeException e) {
+    	   System.out.println("Problema de arquivamento"); 
+    	   e.printStackTrace();
+       }
+       */
+       
+		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
         for(Registro registro: registros) {
         	String a = registro.toString();

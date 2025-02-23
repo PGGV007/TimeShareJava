@@ -17,7 +17,7 @@ public class Propriedade implements Serializable {
 	private int capacidade; 
 	private double price; 
 	private final String idPropriedade; 
-	private  Registro[] registros;   //registros diretamente relacionados á prorpriedade 
+	private  Registro[] registros= new Registro[52];   //registros diretamente relacionados á prorpriedade 
 	private LocalDate dataInicial; //data exata em que a propriedade fora vinculada 
 	private int anoBase; //ano em que a propriedae fora vinculada 
 	private Map<Integer, LocalDate> semanas; // map para vincular as semanas a datas 
@@ -37,8 +37,9 @@ public class Propriedade implements Serializable {
 		 this.semanas = new HashMap<>(); 
 		 inicializarSemanas(); 
 		 this.idPropriedade = GeradorId.geradorHexId(16);
-		 this.registros = new Registro[52]; 
-			 
+		 for(int i = 0; i<52;i++) {
+			 registros[i] = new Registro((byte)(i+1),this); 
+		 }
 	}
 	
 	public Registro[] getRegistros() {
@@ -123,7 +124,23 @@ public class Propriedade implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	Object o; 
+	@Override 
+	public boolean equals(Object obj) {
+		
+		if (this == obj) {  
+	        return true;
+	    }
+	    if (!(obj instanceof Propriedade)) { 
+	        return false;
+	    }
+	    Propriedade p = (Propriedade) obj;
+	    return this.getIdPropriedade() != null && this.getIdPropriedade().equals(p.getIdPropriedade());
+	}
 	
-	
+	@Override
+	public String toString() {
+		return this.getIdPropriedade();
+	}
 	
 }
