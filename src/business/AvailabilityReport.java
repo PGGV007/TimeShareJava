@@ -56,7 +56,7 @@ public  class AvailabilityReport {
 		for(Object obj : cloneReserva) {
 			Reserva r = (Reserva) obj; 
 			
-			if(!r.getAtivo()) { //verifica se o  registro está ativo dentro do repositório 
+			if(r.getAtivo()) { //verifica se o  registro está ativo dentro do repositório 
 				if((r.getRegistro().getPropriedade().equals(propriedade))){ //if verifica se a propriedade do registro em questão é a mesma do argumento
 					datas.put(r.getDataInicial(), (r.getDataInicial()).plusDays(6));  //coloca a data inicial e final no map 
 				}

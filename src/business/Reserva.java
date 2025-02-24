@@ -32,6 +32,7 @@ public class Reserva implements Serializable{
 		LocalDate dataInicial = ((registro.getPropriedade()).getSemana((int)(registro.getFraction()), ano));//pega a data referente ao ano da fração correspondente na propriedade
 		this.dataInicial = dataInicial; 
 		this.registro = registro; 
+		this.ativo = true; 
 	}
 	
 	private void reservar(Registro registro, User userDemanda) throws WeekAlreadyReservedException, PaymentNotCompletedException, WeekNotAvailableException {
@@ -63,6 +64,7 @@ public class Reserva implements Serializable{
 	public void retirarReserva(String id, IRepositorio rep, Registro reg) throws ClassNotFoundException, IOException, EmptyArchiveException {
 		if(id.equals(renter.getIdUser()) && rep.existe(id)) {
 			reg.setReservado(false);
+			this.ativo = false; 
 		}
 		//faz com que a reserva seja desativada.
 		//ela não deixa de existir, no entanto, não pode mais ser usada
