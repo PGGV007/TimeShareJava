@@ -6,20 +6,20 @@ import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import classesBasicas.User;
 import dados.IRepositorio;
+import dados.RepositorioReservaSet;
 
 @SuppressWarnings("unused")
 public class HistoryQuery {
 	
-	private IRepositorio repositorio; //repositorio de reservas
+	private RepositorioReservaSet repositorio; //repositorio de reservas
 	
-	public HistoryQuery(IRepositorio repositorio) {
+	public HistoryQuery(RepositorioReservaSet repositorio) {
 		this.repositorio = repositorio; 
 	}
 	
 	public Set<User> consultaPeriodo(Registro registro){ //método retorna um set de users que em algum momento já reservaram um determiando perído de uma propriedade
 		
-		@SuppressWarnings("unchecked")
-		HashSet<Object> reservas = (HashSet<Object>)repositorio; 
+		HashSet<Object> reservas = new HashSet<Object>(repositorio.getRepositorio()); 
 		HashSet<User> users = new HashSet<User>(); 
 		
 		for(Object obj : reservas) {

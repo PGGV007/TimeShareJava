@@ -36,7 +36,7 @@ public class TestCadastroPropriedade {
         IRepositorio repositorioProp = new RepositorioPropriedadeSet("arquivo_propriedade.dat");  // Supondo que já tenha esse repositório
         IRepositorio repositorioGer = new RepositorioGerenteSet("arquivo_gerente.dat");
         IRepositorio repositorioRegi = new RepositorioRegistroSet("arquivo_registro.dat");
-        IRepositorio repositorioReserva = new RepositorioReservaSet("arquivi_reserva.dat");
+        IRepositorio repositorioReserva = new RepositorioReservaSet("arquivo_reserva.dat");
         CadastroPropriedade cadastroPropriedade = new CadastroPropriedade(repositorioProp,repositorioGer,repositorioRegi );
         CadastroGerente cadastroGerente = new CadastroGerente(repositorioGer); 
 
