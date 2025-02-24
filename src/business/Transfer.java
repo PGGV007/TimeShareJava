@@ -27,20 +27,25 @@ public class Transfer implements Serializable {
 		this.id = GeradorId.geradorHexId(6);
 	}
 	
-	public void transfer(String idUser, String idRegistro) throws ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException 
+	public void transfer(String idUser, Registro re) throws ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException 
 	{
-		if(idUser != null && repositorioUser.existe(idUser) && !(((Registro)repositorioRegistro.procurar(idRegistro)).getOwner()).equals(((User)repositorioUser.procurar(idUser))) ) {
-			if(repositorioRegistro.existe(idRegistro)) {
-				Registro r = (Registro)repositorioRegistro.procurar(idRegistro);
-				r.setUser((User)repositorioUser.procurar(idUser));
-				r.setForSale(false);
+		if(re.getForSale()) {
+		
+			if(idUser != null && repositorioUser.existe(idUser) && !(((Registro)repositorioRegistro.procurar(re.getIdRegistro())).getOwner()).equals(((User)repositorioUser.procurar(idUser))) ) {
+				if(repositorioRegistro.existe(re.getIdRegistro())) {
+				
+					re.setUser((User)repositorioUser.procurar(idUser));
+					re.setForSale(false);
+					repositorioRegistro.atualizar(re);
+				}else {
+					throw new IllegalArgumentException("Registro inválido"); 
+				}
 			}else {
-				throw new IllegalArgumentException("Registro inválido"); 
+				throw new  IllegalArgumentException("Usuário inválido"); 
 			}
 		}else {
-			throw new  IllegalArgumentException("Usuário inválido"); 
+			throw new IllegalArgumentException("Registro não está à venda");
 		}
-		
 	}
 
 	public String getIdTransfer() {

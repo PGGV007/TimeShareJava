@@ -2,7 +2,7 @@ package main;
 
  import java.io.IOException;
 import java.time.LocalDate;
-
+import exceptions.ObjectOutsideArrayException;
 import business.Transfer;
 import classesBasicas.Propriedade;
 import classesBasicas.Registro;
@@ -11,7 +11,6 @@ import classesBasicas.Registro;
  import dados.RepositorioRegistroSet;
  import dados.RepositorioUserSet;
 import exceptions.EmptyArchiveException;
-import exceptions.ObjectOutsideArrayException;
 
 public class TesteTransfer {
 
@@ -28,6 +27,7 @@ public class TesteTransfer {
 		User j = new User("321", "joshua","123");
 		
 		Registro r = new Registro(((byte)1), propriedade, u);
+		r.setForSale(true);
 		
 		try {
 			repositorioRegi.adicionar(r);
@@ -48,7 +48,7 @@ public class TesteTransfer {
 			e.printStackTrace();
 		}
 		try {
-			t.transfer(j.getIdUser(), r.getIdRegistro());
+			t.transfer(j.getIdUser(), r);
 			//t.transfer(j.getIdUser(), r.getIdRegistro());
 		} catch (ObjectOutsideArrayException e) {
 			// TODO Auto-generated catch block
@@ -63,6 +63,10 @@ public class TesteTransfer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+	
+		
 		
 		System.out.println(r.getOwner());
 		
