@@ -64,8 +64,9 @@ public class Propriedade implements Serializable {
 		}
 		
 		int diferencaAnos = ano - anoBase; 
+		int ajusteDias = (ano - anoBase) * 7; 
 		
-		LocalDate dataSemana = semanas.get(numSemana).plusYears(diferencaAnos); 
+		LocalDate dataSemana = semanas.get(numSemana).plusYears(diferencaAnos).plusDays(ajusteDias); 
 		
 		return dataSemana; 
 		

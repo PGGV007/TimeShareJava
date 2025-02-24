@@ -47,7 +47,7 @@ public  class AvailabilityReport {
 		return available; 
 	}
 	
-	public Set<Map<LocalDate,LocalDate>> occupiedDates(Propriedade propriedade, int ano){
+	public Set<Map<LocalDate,LocalDate>> occupiedDates(Propriedade propriedade){
 		
 		HashSet<Object>  cloneReserva= (HashSet<Object>)repositorioReserva.getRepositorio();
 		Map<LocalDate,LocalDate> datas = new HashMap<LocalDate,LocalDate>(); 
