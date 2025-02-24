@@ -131,7 +131,7 @@ private IRepositorio repUser = new RepositorioUserSet("arquivo_user.dat");
 	
 	public Set<Map<LocalDate,LocalDate>> occupiedDates(Propriedade p, int ano){
 		AvailabilityReport ar = new AvailabilityReport(repositorioReservaSet); 
-		return ar.occupiedDates(p,ano); 
+		return ar.occupiedDates(p); 
 	}
 	
 	

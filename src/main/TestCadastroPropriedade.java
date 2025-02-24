@@ -163,7 +163,7 @@ public class TestCadastroPropriedade {
         
         
         
-        HashSet<Map<LocalDate,LocalDate>> datasOcupadas = (HashSet<Map<LocalDate,LocalDate>>)ar.occupiedDates(propriedade2, 2025);
+        HashSet<Map<LocalDate,LocalDate>> datasOcupadas = (HashSet<Map<LocalDate,LocalDate>>)ar.occupiedDates(propriedade2);
         System.out.println("\n------Teste datas ocupadas------\n"); 
         for(Map<LocalDate,LocalDate> m : datasOcupadas) {
         	System.out.println(m); 
