@@ -15,9 +15,14 @@ import exceptions.ObjectOutsideArrayException;
 import exceptions.PropriedadeAlreadyExistsException;
 import exceptions.UnregisteredGerenteException;
 import exceptions.UnregisteredPropriedadeException;
+import business.AvailabilityReport;
+import dados.ComparadorRegistro;
 
 import java.io.IOException;
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.TreeSet; 
+import java.util.Comparator;
 
 public class TestCadastroPropriedade {
 
@@ -106,10 +111,29 @@ public class TestCadastroPropriedade {
        try {
     	   repositorioRegi.listar(); //prova de que o método remover funciona para os registros
     	   System.out.println("\nListagem dos registros feita"); 
+    	   System.out.println("\n\n------Teste AvailabilityReport------\n\n"); 
        }catch(ClassNotFoundException| IOException| EmptyArchiveException e) {
     	  
     	   e.printStackTrace();
        }
+       
+       Registro[] regProp2 = propriedade2.getRegistros();
+       
+       for(Registro r : regProp2) {
+    	   r.setForSale(true);
+       }
+       
+       //Teste AvailabilityReport
+       AvailabilityReport ar = new AvailabilityReport(repositorioRegi); 
+       
+       // ar.occupiedDates(propriedade, 2025);
+       HashSet<Registro> available=(HashSet<Registro>) ar.selling(propriedade2); 
+        
+  
+        
+        for(Registro r : available) { 
+        	System.out.println(r);
+        }
        
 		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	

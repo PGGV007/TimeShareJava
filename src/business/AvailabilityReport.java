@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+
 import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import dados.IRepositorio;
@@ -19,7 +21,7 @@ public  class AvailabilityReport {
 	}
 	
 	
-	public static Set<Registro> selling(Propriedade propriedade){// método que avalia os registros disponíveis para venda de uma propriedade
+	public  Set<Registro> selling(Propriedade propriedade){// método que avalia os registros disponíveis para venda de uma propriedade
 		
 		Registro[] registros = propriedade.getRegistros();
 		HashSet<Registro> selable = new HashSet<Registro>(); 
@@ -33,7 +35,7 @@ public  class AvailabilityReport {
 		return selable;
 	}
 	
-	public static Set<Registro> availableForReserve(Propriedade propriedade){ //método que retorna os registros (semanas) disponíveis para reserva em uma propriedade
+	public  Set<Registro> availableForReserve(Propriedade propriedade){ //método que retorna os registros (semanas) disponíveis para reserva em uma propriedade
 		
 		Registro[] registros = propriedade.getRegistros();
 		HashSet<Registro> available = new HashSet<Registro>(); 

@@ -11,6 +11,7 @@ import exceptions.WrongPasswordException;
 import java.io.IOException;
 
 import business.LoginUser;
+import business.Reserva;
 
 public class TesteLogin {
 
@@ -19,6 +20,7 @@ public class TesteLogin {
 		User u = new User("123","Jonh","321");
 		IRepositorio repositorio = new RepositorioUserSet("arquivo_user.dat"); 
 		RepositorioReservaSet repositorioReserva = new RepositorioReservaSet("arquivo_registro.dat"); 
+		//Reserva r = new Reserva(); 
 		try {
 			repositorio.adicionar(u);
 		} catch (IOException e) {

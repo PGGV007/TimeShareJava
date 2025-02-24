@@ -26,6 +26,7 @@ public class TesteTransfer {
 		
 		User u = new User("123", "jonh","123");
 		User j = new User("321", "joshua","123");
+		
 		Registro r = new Registro(((byte)1), propriedade, u);
 		
 		try {
@@ -47,7 +48,7 @@ public class TesteTransfer {
 			e.printStackTrace();
 		}
 		try {
-			t.transfer(u.getIdUser(), r.getIdRegistro());
+			t.transfer(j.getIdUser(), r.getIdRegistro());
 			//t.transfer(j.getIdUser(), r.getIdRegistro());
 		} catch (ObjectOutsideArrayException e) {
 			// TODO Auto-generated catch block

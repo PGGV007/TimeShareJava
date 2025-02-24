@@ -37,13 +37,14 @@ public class TesteCadastroUser {
 			e.printStackTrace();
 		}
 		//System.out.println(u.getNome()); 
-		try {
+	/*	try {
 			repositorioUser.listar();
 		} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
 			e.printStackTrace();
-		} 
+		} */
 		try {
 			cadUser.descadastrar(u.getIdUser());
+			
 		}catch(IOException| ClassNotFoundException| EmptyArchiveException|ObjectOutsideArrayException| UnregisteredUserException e) {
 			System.out.println("Problema de arquivamento 3"); 
 			e.printStackTrace();
