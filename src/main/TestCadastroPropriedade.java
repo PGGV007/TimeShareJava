@@ -59,8 +59,8 @@ public class TestCadastroPropriedade {
        //cadastramento de propriedade 
        try {
     	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade);
-    	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade2);
-    	   cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade3);
+    	 //  cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade2);
+    	  // cadastroPropriedade.cadastrar(gerente.getIdGerente(), propriedade3);
        }catch (ClassNotFoundException| IOException | EmptyArchiveException e){
     	   System.out.println("Problema de arquivamento");
     	   e.printStackTrace();
@@ -74,19 +74,12 @@ public class TestCadastroPropriedade {
        //teste atualização
        try {
     	   cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
-    	   System.out.println("Atualização concluída" + "  " + propriedade.getCapacidade());
        }catch(UnregisteredGerenteException| UnregisteredPropriedadeException | ObjectOutsideArrayException| ClassNotFoundException| IOException| EmptyArchiveException e) {
     	   System.out.println("Problema de arquivamento");
     	   e.printStackTrace();
        }
        
-     /*  try {
-		cadastroPropriedade.descadastrar(gerente.getIdGerente(), "fe8493cb02f66924");
-	} catch (ClassNotFoundException | UnregisteredGerenteException | UnregisteredPropriedadeException
-			| ObjectOutsideArrayException | IOException | EmptyArchiveException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}*/
+
        try {
 		repositorioProp.listar();
 	} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
@@ -94,14 +87,21 @@ public class TestCadastroPropriedade {
 		e.printStackTrace();
 	}	
        //teste do descadastramento 
-       /*try {
-    	   cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());
-    	   System.out.println("Propriedade removida do array"); 
+       try {
+    	   cadastroPropriedade.descadastrar(gerente.getIdGerente(), propriedade.getIdPropriedade());//dado que ao descadastrar uma propriedade também se descadatram todos os seus regisro
+    	   System.out.println("Propriedade removida do array");                                     //quando se descadastra uma propriedade corretamente, assim também se faz com seus registros
+    	                                                                                            //com efeito, não é necessário um teste específico 
        }catch(ObjectOutsideArrayException | ClassNotFoundException| IOException| EmptyArchiveException | UnregisteredGerenteException |  UnregisteredPropriedadeException e) {
     	   System.out.println("Problema de arquivamento"); 
     	   e.printStackTrace();
        }
-       */
+       
+       try {
+		repositorioProp.listar();
+	} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
        
 		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	

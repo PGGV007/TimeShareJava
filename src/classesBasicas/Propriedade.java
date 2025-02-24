@@ -3,7 +3,8 @@ package classesBasicas;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Map; 
+import java.util.Map;
+import java.util.Objects; 
 
 public class Propriedade implements Serializable {
 	
@@ -41,6 +42,7 @@ public class Propriedade implements Serializable {
 			 registros[i] = new Registro((byte)(i+1),this); 
 		 }
 	}
+	
 	
 	public Registro[] getRegistros() {
 		return this.registros; 
@@ -124,7 +126,7 @@ public class Propriedade implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	Object o; 
+	
 	@Override 
 	public boolean equals(Object obj) {
 		
@@ -140,7 +142,14 @@ public class Propriedade implements Serializable {
 	
 	@Override
 	public String toString() {
-		return this.getIdPropriedade();
+		return "Capacidade Propriedade:" +" "+ this.getCapacidade();
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(idPropriedade);
+	}
+	
+	
 	
 }

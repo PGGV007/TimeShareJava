@@ -62,7 +62,7 @@ public class CadastroGerente {
 			
 			if(repositorio.existe(id) == true) {
 				
-				repositorio.atualizar(repositorio.procurar(id));
+				repositorio.atualizar((Gerente)repositorio.procurar(id));
 				
 			}else {
 				

@@ -1,5 +1,7 @@
 package classesBasicas;
 
+import java.util.Objects;
+
 public class Gerente extends Pessoa {
 	
 	/**
@@ -22,6 +24,22 @@ public class Gerente extends Pessoa {
 	public String getSenha() {
 		return senha;
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) {return true;}
+	        if (o == null  || !(o.getClass().equals(this.getClass()))) {
+	        	return false; 
+	        }
+	        
+	        Gerente g = (Gerente) o ; 
+	        return this.getIdGerente().equals(g.getIdGerente()); 
+	    }
+	    
+	    @Override
+	    public int hashCode() {
+	    	return Objects.hash(idGerente); 
+	    }
 
 	
 }

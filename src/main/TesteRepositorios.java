@@ -24,7 +24,15 @@ public class TesteRepositorios {
 			repUser.adicionar(u);
 			try {
 				repUser.retirar(u);
+				System.out.println("funcionou a retirada"); 
+				repUser.listar();
 			} catch (ObjectOutsideArrayException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (EmptyArchiveException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -36,6 +44,13 @@ public class TesteRepositorios {
 			repGer.adicionar(g);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			repGer.retirar(g);
+			System.out.println("funciona"); 
+		}catch(ObjectOutsideArrayException| IOException e) {
 			e.printStackTrace();
 		}
 		

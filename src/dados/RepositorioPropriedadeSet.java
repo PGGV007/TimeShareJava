@@ -26,7 +26,7 @@ public class RepositorioPropriedadeSet extends RepositorioGenericoSet implements
 		
 		boolean teste = false; 
 		Propriedade j = null; ; 
-		Set<Object> clone = (Set<Object>)carregarDados(getArquivo());
+		Set<Object> clone = (Set<Object>)carregarDados(this.getArquivo());
 		for(Object obj : clone) {
 			Propriedade p = (Propriedade) obj; 
 		   teste = p.getIdPropriedade().equals(id); 

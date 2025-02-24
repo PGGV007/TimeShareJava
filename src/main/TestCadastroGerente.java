@@ -6,6 +6,8 @@ import business.CadastroGerente;
 import classesBasicas.Gerente;
 import exceptions.EmptyArchiveException;
 import exceptions.GerenteAlreadyExistsException;
+import exceptions.ObjectOutsideArrayException;
+import exceptions.UnregisteredGerenteException;
 import dados.IRepositorio;
 import dados.RepositorioGerenteSet;
 
@@ -23,13 +25,13 @@ public class TestCadastroGerente {
             
             
 			
-					cadastroGerente.cadastrar(gerente);
+        	cadastroGerente.cadastrar(gerente);
 				
 			
             System.out.println("Gerente cadastrado com sucesso!");
             System.out.println("Deu bom");
            
-            cadastroGerente.cadastrar(gerente);  
+            //cadastroGerente.cadastrar(gerente);  
         } catch (GerenteAlreadyExistsException e) {
         	System.out.println("Rodou Catch"); 
             System.out.println("Erro: Gerente já existe!");
@@ -39,7 +41,30 @@ public class TestCadastroGerente {
         } catch (EmptyArchiveException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+       }
+        gerente.setNome("Mark");
+        
+        try {
+        	cadastroGerente.atualizar(gerente.getIdGerente());
+        }catch(ObjectOutsideArrayException| UnregisteredGerenteException| ClassNotFoundException| IOException| EmptyArchiveException e) {
+        	System.out.println("Problema de arquivamento");
+        	e.printStackTrace();
+        }
+        
+        try {
+			repositorio.listar();
+		} catch (ClassNotFoundException | IOException | EmptyArchiveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+        
+        try {
+        	cadastroGerente.descadastrar(gerente.getIdGerente());
+        	System.out.println("Gerente removido com sucesso");
+        }catch(ObjectOutsideArrayException| UnregisteredGerenteException| ClassNotFoundException| IOException| EmptyArchiveException e){
+        	System.out.println("Problema de arquivamento");
+        	e.printStackTrace();
+        }
         
         try {
 			repositorio.listar();

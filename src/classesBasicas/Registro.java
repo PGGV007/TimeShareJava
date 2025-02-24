@@ -1,6 +1,7 @@
 package classesBasicas;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Registro implements Serializable {
 	
@@ -105,6 +106,27 @@ public class Registro implements Serializable {
 	@Override
 	public String toString() {
 		return  ((Byte)this.fraction).toString() +"  " +idRegistro;  
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj == this) {
+			return true; 
+		}
+		
+		if(obj == null || !obj.getClass().equals(this.getClass())) {
+			return false; 
+		}
+		
+		Registro r = (Registro) obj; 
+		return r.getIdRegistro().equals(this.getIdRegistro());
+	}
+	
+	@Override
+	public int hashCode() { 
+		
+		return Objects.hash(idRegistro);
 	}
   
     

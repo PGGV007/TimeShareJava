@@ -29,10 +29,17 @@ public class User extends Pessoa{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User user)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(getIdUser(), user.getIdUser());
+        if (this == o) {return true;}
+        if(o == null || !(o.getClass().equals(this.getClass()))) {
+        	return false; 
+        }
+        User u = (User) o; 
+        return this.getIdUser().equals(u.getIdUser()); 
+    }
+    
+    @Override
+    public int hashCode() {
+    	return Objects.hash(idUser); 
     }
 
 	
