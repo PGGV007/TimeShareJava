@@ -1,6 +1,7 @@
 package business;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,13 +11,14 @@ import java.util.TreeSet;
 import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import dados.IRepositorio;
+import dados.RepositorioReservaSet;
 
 
 public  class AvailabilityReport {
 	
-	IRepositorio repositorioReserva;
+	RepositorioReservaSet repositorioReserva;
 	
-	public AvailabilityReport(IRepositorio repositorioReserva){
+	public AvailabilityReport(RepositorioReservaSet repositorioReserva){
 		this.repositorioReserva =  repositorioReserva; 
 	}
 	
@@ -52,7 +54,7 @@ public  class AvailabilityReport {
 	@SuppressWarnings("unchecked")
 	public Set<Map<LocalDate,LocalDate>> occupiedDates(Propriedade propriedade, int ano){
 		
-		HashSet<Object>  cloneReserva= (HashSet<Object>) repositorioReserva;
+		HashSet<Object>  cloneReserva= (HashSet<Object>)repositorioReserva.getRepositorio();
 		Map<LocalDate,LocalDate> datas = new HashMap<LocalDate,LocalDate>(); 
 		HashSet<Map<LocalDate,LocalDate>>  datasOcupadas = new HashSet<Map<LocalDate,LocalDate>>();
 		

@@ -1,28 +1,32 @@
 package main;
 
 import business.CadastroPropriedade;
+import business.Reserva;
 import business.CadastroGerente;
 import classesBasicas.Propriedade;
 import classesBasicas.Gerente;
 import classesBasicas.Registro;
+import classesBasicas.User;
 import dados.IRepositorio;
 import dados.RepositorioPropriedadeSet;
 import dados.RepositorioRegistroSet;
+import dados.RepositorioReservaSet;
 import dados.RepositorioGerenteSet;
 import exceptions.EmptyArchiveException;
 import exceptions.GerenteAlreadyExistsException;
 import exceptions.ObjectOutsideArrayException;
+import exceptions.PaymentNotCompletedException;
 import exceptions.PropriedadeAlreadyExistsException;
 import exceptions.UnregisteredGerenteException;
 import exceptions.UnregisteredPropriedadeException;
+import exceptions.WeekAlreadyReservedException;
+import exceptions.WeekNotAvailableException;
 import business.AvailabilityReport;
-import dados.ComparadorRegistro;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.TreeSet; 
-import java.util.Comparator;
+import java.util.Map;
+
 
 public class TestCadastroPropriedade {
 
@@ -32,6 +36,7 @@ public class TestCadastroPropriedade {
         IRepositorio repositorioProp = new RepositorioPropriedadeSet("arquivo_propriedade.dat");  // Supondo que já tenha esse repositório
         IRepositorio repositorioGer = new RepositorioGerenteSet("arquivo_gerente.dat");
         IRepositorio repositorioRegi = new RepositorioRegistroSet("arquivo_registro.dat");
+        IRepositorio repositorioReserva = new RepositorioReservaSet("arquivi_reserva.dat");
         CadastroPropriedade cadastroPropriedade = new CadastroPropriedade(repositorioProp,repositorioGer,repositorioRegi );
         CadastroGerente cadastroGerente = new CadastroGerente(repositorioGer); 
 
@@ -118,23 +123,49 @@ public class TestCadastroPropriedade {
        }
        
        Registro[] regProp2 = propriedade2.getRegistros();
+       User demanda = new User("963", "romeu", "741");
        
        for(Registro r : regProp2) {
     	   r.setForSale(true);
+    	   r.setAvailabe(true);
+    	   r.setUser(demanda);
+    	   
+    	   if(r.getFraction() == 3) {
+    		   try {
+				Reserva re = new Reserva(r,demanda, 2025);
+				repositorioReserva.adicionar(re);
+			} catch (WeekAlreadyReservedException | PaymentNotCompletedException | WeekNotAvailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+    	   }
        }
        
        //Teste AvailabilityReport
-       AvailabilityReport ar = new AvailabilityReport(repositorioRegi); 
+       AvailabilityReport ar = new AvailabilityReport((RepositorioReservaSet)repositorioReserva); 
        
        // ar.occupiedDates(propriedade, 2025);
-       HashSet<Registro> available=(HashSet<Registro>) ar.selling(propriedade2); 
-        
-  
-        
-        for(Registro r : available) { 
-        	System.out.println(r);
-        }
+       HashSet<Registro> available=(HashSet<Registro>) ar.selling(propriedade2);
+       HashSet<Registro> availableReserve=(HashSet<Registro>) ar.availableForReserve(propriedade2);
        
+        for(Registro r : available) { 
+        	System.out.println(r + "  " +"Disponibilidade de compra");
+        }
+        System.out.println("\n------Teste Reserva------\n"); 
+        for(Registro r : availableReserve) { 
+        	System.out.println(r + "  " +"Disponibilidade de reserva");
+        }
+        
+        
+        
+        HashSet<Map<LocalDate,LocalDate>> datasOcupadas = (HashSet<Map<LocalDate,LocalDate>>)ar.occupiedDates(propriedade2, 2025);
+        System.out.println("\n------Teste datas ocupadas------\n"); 
+        for(Map<LocalDate,LocalDate> m : datasOcupadas) {
+        	System.out.println(m); 
+        }
 		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
         for(Registro registro: registros) {

@@ -15,6 +15,11 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	private static final long serialVersionUID = 8270543749004816682L;
 	protected Set<Object> repositorio = new HashSet<>(); 
 	
+	
+	public Set<Object> getRepositorio() {
+		return repositorio;
+	}
+
 	public RepositorioGenericoSet(String arquivo) {
 		this.arquivo = arquivo;
 		
