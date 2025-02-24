@@ -12,7 +12,11 @@ import classesBasicas.Propriedade;
 import classesBasicas.Registro;
 import business.LoginUser;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.Set;
+
+import business.AvailabilityReport;
 import business.CadastroGerente;
 import business.CadastroPropriedade;
 import business.CadastroUser;
@@ -114,6 +118,23 @@ private IRepositorio repUser = new RepositorioUserSet("arquivo_user.dat");
 		HistoryQuery hq = new HistoryQuery(repositorioReservaSet); 
 		return hq.consultaPropriedade(p);
 	}
+	
+	public Set<Registro> selling(Propriedade p){
+		AvailabilityReport ar = new AvailabilityReport(repositorioReservaSet); 
+		return ar.selling(p); 
+	}
+	
+	public Set<Registro> availableForReserve(Propriedade p){
+		AvailabilityReport ar = new AvailabilityReport(repositorioReservaSet); 
+		return ar.availableForReserve(p); 
+	}
+	
+	public Set<Map<LocalDate,LocalDate>> occupiedDates(Propriedade p, int ano){
+		AvailabilityReport ar = new AvailabilityReport(repositorioReservaSet); 
+		return ar.occupiedDates(p,ano); 
+	}
+	
+	
 	
 	
 	

@@ -1,6 +1,7 @@
 package main;
 
 import business.CadastroPropriedade;
+import business.HistoryQuery;
 import business.Reserva;
 import business.CadastroGerente;
 import classesBasicas.Propriedade;
@@ -39,6 +40,7 @@ public class TestCadastroPropriedade {
         IRepositorio repositorioReserva = new RepositorioReservaSet("arquivo_reserva.dat");
         CadastroPropriedade cadastroPropriedade = new CadastroPropriedade(repositorioProp,repositorioGer,repositorioRegi );
         CadastroGerente cadastroGerente = new CadastroGerente(repositorioGer); 
+        RepositorioReservaSet repositorioReservaSet = (RepositorioReservaSet) repositorioReserva; 
 
         LocalDate date = LocalDate.now(); 
         // Criar um gerente
@@ -133,7 +135,7 @@ public class TestCadastroPropriedade {
     	   if(r.getFraction() == 3) {
     		   try {
 				Reserva re = new Reserva(r,demanda, 2025);
-				repositorioReserva.adicionar(re);
+				repositorioReserva.adicionar(re);//reserva da fração 3 do ano de 2025 da intância propriedade2 
 			} catch (WeekAlreadyReservedException | PaymentNotCompletedException | WeekNotAvailableException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -165,6 +167,15 @@ public class TestCadastroPropriedade {
         System.out.println("\n------Teste datas ocupadas------\n"); 
         for(Map<LocalDate,LocalDate> m : datasOcupadas) {
         	System.out.println(m); 
+        }
+        
+        
+        //teste HistoryQuery
+        System.out.println("\n\n-----Teste HistoryQuery------\n\n");
+        HistoryQuery hq = new HistoryQuery(repositorioReservaSet); 
+        HashSet<User> teste = (HashSet<User>) hq.consultaPropriedade(propriedade2); //a funcionalidade desde método implica na funcionalidade do outro método da classe
+        for(User u :teste) {
+        	System.out.println(u); 
         }
 		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	
