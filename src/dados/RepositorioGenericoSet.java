@@ -23,10 +23,9 @@ public abstract class RepositorioGenericoSet implements IRepositorio, Serializab
 	@Override
 	public void atualizar(Object obj) 	throws ObjectOutsideArrayException, IOException {
 		
-	
-			System.out.println(repositorio.remove(obj));
-			System.out.println(repositorio.add(obj));
-			 
+			repositorio.remove(obj);
+			repositorio.add(obj);
+			
 			salvarDados(repositorio,getArquivo()); 
 		
 	}

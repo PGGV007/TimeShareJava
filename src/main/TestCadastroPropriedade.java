@@ -73,7 +73,7 @@ public class TestCadastroPropriedade {
        propriedade.setCapacidade(500);
        //teste atualização
        try {
-    	   cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade.getIdPropriedade());
+    	   cadastroPropriedade.atualizar(gerente.getIdGerente(), propriedade);
        }catch(UnregisteredGerenteException| UnregisteredPropriedadeException | ObjectOutsideArrayException| ClassNotFoundException| IOException| EmptyArchiveException e) {
     	   System.out.println("Problema de arquivamento");
     	   e.printStackTrace();
@@ -102,6 +102,14 @@ public class TestCadastroPropriedade {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}	
+       
+       try {
+    	   repositorioRegi.listar(); //prova de que o método remover funciona para os registros
+    	   System.out.println("\nListagem dos registros feita"); 
+       }catch(ClassNotFoundException| IOException| EmptyArchiveException e) {
+    	  
+    	   e.printStackTrace();
+       }
        
 		
      /*   Registro[] registros =propriedade.getRegistros(); //teste da alocação dos registros dentro do array interno de propriedade 	

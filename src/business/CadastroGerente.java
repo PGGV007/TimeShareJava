@@ -56,13 +56,13 @@ public class CadastroGerente {
 		
 	}
 	
-	public void atualizar(String id) throws ObjectOutsideArrayException, UnregisteredGerenteException, ClassNotFoundException, IOException, EmptyArchiveException{
+	public void atualizar(Gerente gerente) throws ObjectOutsideArrayException, UnregisteredGerenteException, ClassNotFoundException, IOException, EmptyArchiveException{
 		
-		if(id != null) {
+		if(gerente != null) {
 			
-			if(repositorio.existe(id) == true) {
+			if(repositorio.existe(gerente.getIdGerente()) == true) {
 				
-				repositorio.atualizar((Gerente)repositorio.procurar(id));
+				repositorio.atualizar(gerente);
 				
 			}else {
 				

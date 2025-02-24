@@ -36,12 +36,10 @@ public class CadastroUser {
 	}
 	
 	public void descadastrar(String id) throws ObjectOutsideArrayException, UnregisteredUserException, ClassNotFoundException, IOException, EmptyArchiveException {
-		User u = (User) repositorio.procurar(id); 
 		
-		
-		if(u != null) {
+		if(id != null) {
 			if(repositorio.existe(id) ==true) {
-				repositorio.retirar(u);
+				repositorio.retirar(repositorio.procurar(id));
 			}else {
 				throw new UnregisteredUserException(); 
 			}
@@ -51,11 +49,10 @@ public class CadastroUser {
 		
 	}
 	
-	public void atualizar(String idUser) throws ObjectOutsideArrayException, UnregisteredUserException, ClassNotFoundException, IOException, EmptyArchiveException {
-		if(idUser != null) {
-			if(repositorio.existe(idUser) == true) {
-				repositorio.atualizar((User)repositorio.procurar(idUser));
-				System.out.println(repositorio.procurar(idUser));
+	public void atualizar(User user) throws ObjectOutsideArrayException, UnregisteredUserException, ClassNotFoundException, IOException, EmptyArchiveException {
+		if(user != null) {
+			if(repositorio.existe(user.getIdUser()) == true) {
+				repositorio.atualizar(user);
 			}else {
 				throw new UnregisteredUserException(); 
 			}

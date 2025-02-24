@@ -45,7 +45,7 @@ public class TestCadastroGerente {
         gerente.setNome("Mark");
         
         try {
-        	cadastroGerente.atualizar(gerente.getIdGerente());
+        	cadastroGerente.atualizar(gerente);
         }catch(ObjectOutsideArrayException| UnregisteredGerenteException| ClassNotFoundException| IOException| EmptyArchiveException e) {
         	System.out.println("Problema de arquivamento");
         	e.printStackTrace();

@@ -79,9 +79,9 @@ public class CadastroPropriedade {
 		
 	}
 	
-	public void atualizar(String idGerente, String idPropriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException{
-		if(checkId(idGerente,idPropriedade) == true) {
-			repositorioPropriedade.atualizar((Propriedade)repositorioPropriedade.procurar(idPropriedade));
+	public void atualizar(String idGerente, Propriedade propriedade) throws UnregisteredGerenteException, UnregisteredPropriedadeException, ObjectOutsideArrayException, ClassNotFoundException, IOException, EmptyArchiveException{
+		if(checkId(idGerente,propriedade.getIdPropriedade()) == true) {
+			repositorioPropriedade.atualizar(propriedade);
 		}
 	}
 	

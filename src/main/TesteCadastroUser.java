@@ -31,7 +31,7 @@ public class TesteCadastroUser {
 		u.setNome("Joshua");
 		
 		try {
-			cadUser.atualizar(u.getIdUser());
+			cadUser.atualizar(u);
 		}catch(IOException| ClassNotFoundException| EmptyArchiveException|ObjectOutsideArrayException| UnregisteredUserException e) {
 			System.out.println("Problema de arquivamento 2"); 
 			e.printStackTrace();
